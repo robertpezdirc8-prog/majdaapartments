@@ -9,9 +9,12 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="River Kolpa Apartments">
 <meta property="og:locale" content="sl_SI">
+<meta property="og:locale:alternate" content="en_US">
 <meta property="og:title" content="River Kolpa Apartments — dve hiši ob reki Kolpi, Griblje">
 <meta property="og:description" content="Štirje samostojni apartmaji na dveh naslovih, Griblje 70 in Griblje 30 b. Terasa, jacuzzi, ograjen vrt in deset minut hoje do naravnega kopališča na Kolpi.">
-<meta property="og:image" content="img/deljena-1200x630.jpg">
+<meta property="og:url" content="https://robertpezdirc8-prog.github.io/riverkolpapartments/">
+<meta property="og:image" content="https://robertpezdirc8-prog.github.io/riverkolpapartments/img/deljena-1200x630.jpg">
+<link rel="canonical" href="https://robertpezdirc8-prog.github.io/riverkolpapartments/">
 <meta name="theme-color" content="#07160f">
 <script type="application/ld+json">
 {
@@ -30,7 +33,7 @@
   "checkoutTime": "10:00",
   "petsAllowed": true,
   "smokingAllowed": false,
-  "image": "img/deljena-1200x630.jpg"
+  "image": "https://robertpezdirc8-prog.github.io/riverkolpapartments/img/deljena-1200x630.jpg"
 }
 </script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f2a24'/%3E%3Cpath d='M4 20c4-4 6 2 10-2s6 2 10-2 4 2 4 0' stroke='%23e0b287' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3Cpath d='M4 26c4-4 6 2 10-2s6 2 10-2 4 2 4 0' stroke='%237f9b85' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
@@ -56,7 +59,9 @@ img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 button{font-family:var(--sans);color:inherit}
 ::selection{background:var(--gold);color:#101a12}
-.kicker{font-size:.68rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.skip{position:fixed;top:-100px;left:1rem;z-index:300;background:var(--gold);color:#101a12;padding:.7rem 1.2rem;border-radius:2px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;transition:top .3s}
+.skip:focus{top:1rem}
+.kicker{font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);font-weight:500}
 .num{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--gold)}
 .rule{width:52px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
 h2.title{font-family:var(--serif);font-weight:500;font-size:clamp(1.6rem,3.2vw,2.7rem);line-height:1.06;margin-bottom:.6rem}
@@ -69,7 +74,10 @@ header{position:fixed;inset:0 0 auto 0;z-index:100;height:var(--pad-top);display
 .brand{display:flex;align-items:center;gap:.7rem;cursor:pointer;background:none;border:0;padding:0}
 .brand svg{width:32px;height:32px;flex:none;color:var(--gold)}
 .brand b{display:block;font-family:var(--serif);font-size:1.14rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;line-height:1}
-.brand i{display:block;font-family:var(--sans);font-style:normal;font-size:.53rem;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-dim);margin-top:.24rem}
+.brand i{display:block;font-family:var(--sans);font-style:normal;font-size:.55rem;letter-spacing:.42em;text-transform:uppercase;color:var(--ink-dim);margin-top:.24rem}
+.lang{display:flex;align-items:center;gap:.25rem;flex:none;border:1px solid var(--line);border-radius:2px;padding:2px}
+.lang button{background:none;border:0;cursor:pointer;font-size:.62rem;letter-spacing:.14em;padding:.32rem .55rem;color:var(--ink-dim);border-radius:1px;transition:background .3s,color .3s}
+.lang button.on{background:var(--gold);color:#101a12;font-weight:500}
 .menu{display:flex;align-items:center;gap:1.7rem;list-style:none}
 .menu a{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim);position:relative;padding:.3rem 0;cursor:pointer;transition:color .3s}
 .menu a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .35s ease}
@@ -88,6 +96,7 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
 @media(max-width:1050px){
   .burger{display:block}
   .telbtn{display:inline-block}
+  .lang{display:flex;position:fixed;top:calc(var(--pad-top) - 60px);right:1rem;z-index:111;background:rgba(7,12,9,.85);backdrop-filter:blur(8px)}
   .menu{position:fixed;inset:0;background:rgba(7,12,9,.97);flex-direction:column;justify-content:center;gap:1.4rem;opacity:0;pointer-events:none;transition:opacity .4s ease}
   body.nav-open .menu{opacity:1;pointer-events:auto}
   .menu a{font-size:.95rem;letter-spacing:.3em}
@@ -98,7 +107,7 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
 .stage{position:fixed;inset:0}
 .scene{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .85s cubic-bezier(.4,0,.2,1),visibility .85s;pointer-events:none}
 .scene.active{opacity:1;visibility:visible;pointer-events:auto}
-.scene .inner{position:absolute;inset:0;padding:calc(var(--pad-top) + 1vh) 0 var(--dock);display:flex;align-items:center}
+.scene .inner{position:absolute;inset:0;padding:calc(var(--pad-top) + 1vh) 0 var(--dock);display:flex;align-items:safe center;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--gold-soft) transparent}
 .wrap{width:min(1260px,94%);margin-inline:auto}
 .rv{opacity:0;transform:translateY(26px)}
 .scene.active .rv{animation:rise .9s cubic-bezier(.22,1,.36,1) both}
@@ -108,8 +117,7 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
 @keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
 
 /* ---------- DOMOV ---------- */
-#s-domov .bgv,#s-domov .bgp{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-#s-domov .bgp{display:none}
+#s-domov .bgv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 #s-domov .veil{position:absolute;inset:0;background:
   linear-gradient(180deg,rgba(8,14,10,.72) 0%,rgba(8,14,10,.52) 38%,rgba(8,14,10,.6) 70%,rgba(10,19,14,.96) 100%),
   radial-gradient(130% 100% at 50% 42%,transparent 42%,rgba(4,8,5,.62) 100%)}
@@ -122,7 +130,7 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
 .hstat{padding:.75vh 2vw;border-right:1px solid var(--line)}
 .hstat:last-child{border-right:0}
 .hstat .n{font-family:var(--serif);font-size:clamp(1.05rem,1.7vw,1.5rem);font-weight:600;color:var(--gold);line-height:1}
-.hstat .l{font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-dim);margin-top:.3rem}
+.hstat .l{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-dim);margin-top:.3rem}
 .houses{margin-top:2vh;display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:900px;margin-inline:auto}
 .hcard{position:relative;height:clamp(120px,20svh,190px);border-radius:3px;overflow:hidden;border:1px solid rgba(224,178,135,.3);cursor:pointer;text-align:left;padding:0;background:var(--card);transition:transform .35s,box-shadow .35s,border-color .35s}
 .hcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.22,1,.36,1)}
@@ -139,9 +147,8 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
 .split{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(1.4rem,3vw,3rem);align-items:center;min-width:0}
 .split>div,.term-grid>div,.split .viewer,.split .vstrip{min-width:0}
 .viewer{position:relative;border-radius:3px;overflow:hidden;box-shadow:var(--shadow);background:var(--card)}
-.viewer .vmain{position:relative;width:100%;height:clamp(300px,56svh,520px)}
-.viewer .vmain img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .55s ease}
-.viewer .vmain img.on{opacity:1}
+.viewer .vmain{position:relative;width:100%;height:clamp(300px,56svh,520px);background:var(--bg-3)}
+.viewer .vmain img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .viewer .cap{position:absolute;left:1rem;bottom:.9rem;z-index:3;font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;background:rgba(8,14,10,.72);backdrop-filter:blur(6px);border:1px solid var(--line);padding:.45rem .85rem;border-radius:2px}
 .viewer .cap i{color:var(--gold);font-style:normal}
 .viewer .cnt{position:absolute;right:1rem;bottom:.9rem;z-index:3;font-size:.62rem;letter-spacing:.26em;color:var(--ink-dim);background:rgba(8,14,10,.72);border:1px solid var(--line);padding:.45rem .7rem;border-radius:2px}
@@ -158,11 +165,11 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
 .fakti{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:1.4vh}
 .fakt{background:var(--bg-2);border:1px solid rgba(224,178,135,.14);border-radius:2px;padding:.6rem .5rem;text-align:center}
 .fakt .n{font-family:var(--serif);font-weight:600;font-size:clamp(.95rem,1.5vw,1.3rem);color:var(--gold);line-height:1.05}
-.fakt .l{font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);margin-top:.3rem}
+.fakt .l{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);margin-top:.3rem}
 .enote{display:grid;gap:8px;margin-top:1.2vh}
 .enota{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;background:var(--card);border:1px solid rgba(224,178,135,.14);border-radius:2px;padding:.65rem 1rem}
 .enota b{font-weight:500;font-size:.92rem;white-space:nowrap}
-.enota span{font-size:.76rem;color:var(--ink-dim);text-align:right}
+.enota span{font-size:.8rem;color:var(--ink-dim);text-align:right}
 .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:1.2vh}
 .chip{font-size:.68rem;letter-spacing:.1em;color:var(--ink-dim);border:1px solid rgba(224,178,135,.22);border-radius:999px;padding:.32rem .8rem;transition:border-color .3s,color .3s}
 .chip:hover{border-color:var(--gold);color:var(--ink)}
@@ -185,6 +192,16 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
 #s-galerija .rv,#s-galerija .wrap,#s-reka .rv{min-width:0}
 #s-galerija .viewer .vmain{flex:1;height:auto;min-height:0}
 .gal-top{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:.9vh;flex:none}
+.gal-tools{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-bottom:.8rem;flex:none}
+.gal-search{flex:1;min-width:160px;max-width:320px;position:relative}
+.gal-search input{width:100%;background:rgba(8,14,10,.6);border:1px solid rgba(224,178,135,.22);border-radius:2px;color:var(--ink);font-family:var(--sans);font-weight:300;font-size:.78rem;padding:.5rem .75rem;outline:none;transition:border-color .3s}
+.gal-search input:focus{border-color:var(--gold)}
+.gal-search input::placeholder{color:var(--ink-dim)}
+.gal-filters{display:flex;flex-wrap:wrap;gap:.45rem}
+.gal-filters button{font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);border:1px solid rgba(224,178,135,.22);border-radius:999px;padding:.34rem .85rem;background:none;cursor:pointer;transition:border-color .3s,color .3s,background .3s}
+.gal-filters button:hover{border-color:var(--gold);color:var(--ink)}
+.gal-filters button.on{background:var(--gold);color:#101a12;border-color:var(--gold);font-weight:500}
+.gal-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--ink-dim);font-size:.85rem;letter-spacing:.12em;background:var(--bg-3)}
 
 /* ---------- TERMINI ---------- */
 .term-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.4rem,3vw,3rem);align-items:start;min-width:0}
@@ -198,6 +215,14 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
 .mnenje{background:var(--card);border:1px solid rgba(224,178,135,.14);border-left:2px solid var(--gold);border-radius:2px;padding:1rem 1.2rem;margin-top:1.4vh}
 .mnenje q{font-family:var(--serif);font-style:italic;font-size:clamp(.95rem,1.3vw,1.15rem);line-height:1.4;display:block}
 .mnenje cite{display:block;font-style:normal;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-top:.6rem}
+.mnenje .mctl{display:flex;align-items:center;gap:.5rem;margin-top:.8rem}
+.mnenje .mctl button{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:rgba(10,17,12,.5);color:var(--ink);font-size:.8rem;cursor:pointer;display:grid;place-items:center;transition:background .3s,border-color .3s}
+.mnenje .mctl button:hover{background:rgba(224,178,135,.2);border-color:var(--gold)}
+.mnenje .mctl .add{width:auto;border-radius:999px;padding:0 .9rem;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase}
+.mnenje .mctl .add.on{background:var(--gold);border-color:var(--gold);color:#101a12;font-weight:500}
+.mrev{display:none;margin-top:.9rem;border-top:1px solid var(--line);padding-top:.9rem}
+.mrev.open{display:block}
+.mrev .note{font-size:.68rem;color:var(--ink-dim);margin-bottom:.7rem}
 .rules{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:1.4vh}
 .rule-b{background:var(--bg-2);border:1px solid rgba(224,178,135,.12);border-radius:2px;padding:.6rem .85rem}
 .rule-b b{display:block;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
@@ -211,6 +236,19 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
 .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold)}
 .field textarea{min-height:54px;resize:none}
 .c-form .btn{width:100%;justify-content:center;margin-top:.25rem}
+.cal{background:rgba(8,14,10,.6);border:1px solid rgba(224,178,135,.22);border-radius:2px;padding:.8rem}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem}
+.cal-head b{font-family:var(--serif);font-weight:600;font-size:1rem;letter-spacing:.04em}
+.cal-head button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--ink);font-size:.9rem;cursor:pointer;display:grid;place-items:center;transition:background .3s,border-color .3s}
+.cal-head button:hover{background:rgba(224,178,135,.2);border-color:var(--gold)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
+.cal-grid .dow{font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);padding:.3rem 0}
+.cal-grid button{font-size:.78rem;padding:.42rem 0;border-radius:2px;border:1px solid transparent;background:none;color:var(--ink);cursor:pointer;transition:background .25s,border-color .25s,color .25s}
+.cal-grid button:hover:not(:disabled){background:rgba(224,178,135,.14)}
+.cal-grid button:disabled{color:rgba(179,174,157,.3);cursor:default}
+.cal-grid button.sel{background:var(--gold);color:#101a12;font-weight:500}
+.cal-grid button.in{background:rgba(224,178,135,.28);border-color:var(--gold-soft)}
+.cal-note{font-size:.64rem;color:var(--ink-dim);margin-top:.55rem;letter-spacing:.06em;line-height:1.45}
 .legal{font-size:.6rem;color:var(--ink-dim);letter-spacing:.06em;margin-top:1.4vh;line-height:1.6}
 
 /* ---------- dock ---------- */
@@ -254,9 +292,7 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
   .viewer .vmain{height:clamp(240px,40svh,420px)}
   #s-reka .viewer .vmain{height:clamp(240px,44svh,420px)}
   .enote span{display:none}
-  .c-form{display:none}
   .rules{grid-template-columns:1fr 1fr}
-  .legal{display:none}
 }
 @media(max-width:640px){
   :root{--pad-top:72px;--dock:56px}
@@ -276,7 +312,7 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
   .enota b{font-size:.8rem;white-space:normal}
   .fakt{padding:.42rem .35rem}
   .fakt .n{font-size:1rem}
-  .fakt .l{font-size:.5rem;letter-spacing:.1em}
+  .fakt .l{font-size:.54rem;letter-spacing:.1em}
   .fakti{gap:6px}
   .chips{gap:6px}
   .chip{font-size:.62rem;padding:.26rem .6rem}
@@ -294,14 +330,17 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
   .mnenje{padding:.75rem .9rem}
   .gal-top .title{font-size:1.3rem}
   .gal-top .kicker{display:none}
+  .gal-tools{gap:.5rem}
+  .gal-search{max-width:none}
   .dock .mq{display:none}
   .dock .dots{flex:1;justify-content:center}
   .lb .lb-btn{width:40px;height:40px}
 }
 @media(max-height:660px){
   .hero-inner .tag{display:none}
-  .rules{display:none}
-  .mnenje{display:none}
+  .hero-inner .hero-stats{margin-top:1vh}
+  .hero-inner h1{font-size:clamp(2rem,8vw,3rem)}
+  .rules .rule-b{padding:.45rem .7rem}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
@@ -311,53 +350,59 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
 </head>
 <body>
 
+<a class="skip" href="#stage" data-i18n="skip">Preskoči na vsebino</a>
+
 <header>
   <div class="nav">
     <button class="brand" data-go="0" aria-label="River Kolpa Apartments — domov">
       <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M2 21c4-4 6 2 10-2s6 2 10-2 6 2 8 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M2 27c4-4 6 2 10-2s6 2 10-2 6 2 8 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".5"/><path d="M16 3l4.5 9h-9L16 3z" fill="currentColor" opacity=".9"/></svg>
-      <span><b>River Kolpa Apartments</b><i>Griblje · Bela krajina</i></span>
+      <span><b>River Kolpa Apartments</b><i data-i18n="brandSub">Griblje · Bela krajina</i></span>
     </button>
     <ul class="menu" id="menu">
-      <li><a data-go="0" class="active">Domov</a></li>
-      <li><a data-go="1">Griblje 70</a></li>
-      <li><a data-go="2">Griblje 30 b</a></li>
-      <li><a data-go="3">Reka Kolpa</a></li>
-      <li><a data-go="4">Galerija</a></li>
-      <li><a data-go="5">Povpraševanje</a></li>
-      <li><a data-go="5" class="cta">Rezerviraj</a></li>
+      <li><a href="#domov" data-go="0" class="active" data-i18n="m0">Domov</a></li>
+      <li><a href="#h70" data-go="1" data-i18n="m1">Griblje 70</a></li>
+      <li><a href="#h30b" data-go="2" data-i18n="m2">Griblje 30 b</a></li>
+      <li><a href="#reka" data-go="3" data-i18n="m3">Reka Kolpa</a></li>
+      <li><a href="#galerija" data-go="4" data-i18n="m4">Galerija</a></li>
+      <li><a href="#termini" data-go="5" data-i18n="m5">Povpraševanje</a></li>
+      <li><a href="#termini" data-go="5" class="cta" data-i18n="mCta">Rezerviraj</a></li>
     </ul>
+    <div class="lang" role="group" aria-label="Language">
+      <button id="langSl" data-lang="sl" class="on" aria-pressed="true">SL</button>
+      <button id="langEn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
     <a class="telbtn" href="tel:+38640858732">040 858 732</a>
     <button class="burger" id="burger" aria-label="Meni" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
 
-<div class="stage" id="stage">
+<div class="stage" id="stage" tabindex="-1">
 
   <!-- 01 DOMOV -->
   <section class="scene active" id="s-domov">
-    <video class="bgv" autoplay muted loop playsinline preload="metadata" poster="img/poster.webp" aria-hidden="true">
+    <video class="bgv" id="heroVideo" autoplay muted loop playsinline preload="metadata" poster="img/poster.webp" aria-hidden="true">
       <source src="img/kolpa-ozadje.mp4" type="video/mp4">
     </video>
     <div class="veil"></div>
     <div class="inner">
       <div class="hero-inner">
-        <span class="kicker rv">Griblje pri Gradcu · Bela krajina · Slovenija</span>
-        <h1 class="rv d1">River Kolpa Apartments<span class="thin">dve hiši ob najtoplejši reki</span></h1>
-        <p class="tag rv d2">Štiri samostojni apartmaji na dveh naslovih — terasa, jacuzzi, ograjen vrt in deset minut hoje do naravnega kopališča na Kolpi. Brezplačen WiFi in parkirišče.</p>
+        <span class="kicker rv" data-i18n="heroKicker">Griblje pri Gradcu · Bela krajina · Slovenija</span>
+        <h1 class="rv d1">River Kolpa Apartments<span class="thin" data-i18n="heroThin">dve hiši ob najtoplejši reki</span></h1>
+        <p class="tag rv d2" data-i18n="heroTag">Štiri samostojni apartmaji na dveh naslovih — terasa, jacuzzi, ograjen vrt in deset minut hoje do naravnega kopališča na Kolpi. Brezplačen WiFi in parkirišče.</p>
         <div class="hero-stats rv d3">
-          <div class="hstat"><div class="n">2</div><div class="l">hiši</div></div>
-          <div class="hstat"><div class="n">4</div><div class="l">apartmaji</div></div>
-          <div class="hstat"><div class="n">10 min</div><div class="l">hoje do reke</div></div>
-          <div class="hstat"><div class="n">10/10</div><div class="l">8 mnenj</div></div>
+          <div class="hstat"><div class="n">2</div><div class="l" data-i18n="stHouses">hiši</div></div>
+          <div class="hstat"><div class="n">4</div><div class="l" data-i18n="stApart">apartmaji</div></div>
+          <div class="hstat"><div class="n">10 min</div><div class="l" data-i18n="stWalk">hoje do reke</div></div>
+          <div class="hstat"><div class="n" id="revCountHero">3</div><div class="l" data-i18n="stRev">mnenja gostov</div></div>
         </div>
         <div class="houses rv d4">
           <button class="hcard" data-go="1">
             <img src="img/noter-01.webp" alt="Odprt dnevni prostor hiše Griblje 70">
-            <span class="hb"><span class="t">Griblje 70</span><span class="m">Apartma za 7 + studio za 5</span><span class="x">Pergola, letna kuhinja, jacuzzi na vrtu</span></span>
+            <span class="hb"><span class="t">Griblje 70</span><span class="m" data-i18n="card70m">Apartma za 7 + studio za 5</span><span class="x" data-i18n="card70x">Pergola, letna kuhinja, jacuzzi na vrtu</span></span>
           </button>
           <button class="hcard" data-go="2">
             <img src="img/zunanjost-30b.webp" alt="Hiša Griblje 30 b z nadstreškom in jacuzzijem">
-            <span class="hb"><span class="t">Griblje 30 b</span><span class="m">Dva samostojna apartmaja</span><span class="x">Jacuzzi pod nadstreškom, travnik z nogometnimi vrati</span></span>
+            <span class="hb"><span class="t">Griblje 30 b</span><span class="m" data-i18n="card30m">Dva samostojna apartmaja</span><span class="x" data-i18n="card30x">Jacuzzi pod nadstreškom, travnik z nogometnimi vrati</span></span>
           </button>
         </div>
       </div>
@@ -379,26 +424,26 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
           <div class="vstrip" data-strip="v70"></div>
         </div>
         <div>
-          <div class="rv d1" style="display:flex;align-items:center;gap:1rem;margin-bottom:.55rem"><span class="num">01</span><span class="rule"></span><span class="kicker">Prva hiša</span></div>
-          <h2 class="title rv d1">Griblje 70 — <em>hiša s pergolo</em></h2>
-          <p class="lead rv d2">Prenovljena hiša z dvema samostojnima apartmajema. Skupen ograjen vrt s pergolo, letno kuhinjo in jacuzzijem; do naravnega kopališča na Kolpi je deset minut hoje.</p>
+          <div class="rv d1" style="display:flex;align-items:center;gap:1rem;margin-bottom:.55rem"><span class="num">01</span><span class="rule"></span><span class="kicker" data-i18n="h70Kicker">Prva hiša</span></div>
+          <h2 class="title rv d1">Griblje 70 — <em data-i18n="h70Em">hiša s pergolo</em></h2>
+          <p class="lead rv d2" data-i18n="h70Lead">Prenovljena hiša z dvema samostojnima apartmajema. Skupen ograjen vrt s pergolo, letno kuhinjo in jacuzzijem; do naravnega kopališča na Kolpi je deset minut hoje.</p>
           <div class="fakti rv d2">
-            <div class="fakt"><div class="n">2</div><div class="l">enoti</div></div>
-            <div class="fakt"><div class="n">7 + 5</div><div class="l">oseb</div></div>
-            <div class="fakt"><div class="n">10 min</div><div class="l">do reke</div></div>
-            <div class="fakt"><div class="n">10/10</div><div class="l">8 mnenj</div></div>
+            <div class="fakt"><div class="n">2</div><div class="l" data-i18n="fUnits">enoti</div></div>
+            <div class="fakt"><div class="n">7 + 5</div><div class="l" data-i18n="fPersons">oseb</div></div>
+            <div class="fakt"><div class="n">10 min</div><div class="l" data-i18n="fRiver">do reke</div></div>
+            <div class="fakt"><div class="n" id="revCountH70">3</div><div class="l" data-i18n="stRev">mnenja gostov</div></div>
           </div>
           <div class="enote rv d3">
-            <div class="enota"><b>Apartma za 7 oseb</b><span>7 ležišč v dveh spalnicah · lastna terasa</span></div>
-            <div class="enota"><b>Studio za 5 oseb</b><span>nadstavna postelja in raztegljiv kavč</span></div>
+            <div class="enota"><b data-i18n="h70u1b">Apartma za 7 oseb</b><span data-i18n="h70u1s">7 ležišč v dveh spalnicah · lastna terasa</span></div>
+            <div class="enota"><b data-i18n="h70u2b">Studio za 5 oseb</b><span data-i18n="h70u2s">nadstavna postelja in raztegljiv kavč</span></div>
           </div>
           <div class="chips rv d4">
-            <span class="chip">Brezplačen WiFi</span><span class="chip">Brezplačno parkirišče</span><span class="chip">Klimatska naprava</span><span class="chip">Štedilnik na drva</span><span class="chip">Opremljena kuhinja</span><span class="chip">Jacuzzi na vrtu</span><span class="chip">Ograjen vrt</span><span class="chip amen-hide">Ljubljenčki ob najavi</span>
+            <span class="chip" data-i18n="chWifi">Brezplačen WiFi</span><span class="chip" data-i18n="chPark">Brezplačno parkirišče</span><span class="chip" data-i18n="chAc">Klimatska naprava</span><span class="chip" data-i18n="chStove">Štedilnik na drva</span><span class="chip" data-i18n="chKit">Opremljena kuhinja</span><span class="chip" data-i18n="chJac">Jacuzzi na vrtu</span><span class="chip" data-i18n="chGarden">Ograjen vrt</span><span class="chip amen-hide" data-i18n="chPets">Ljubljenčki ob najavi</span>
           </div>
           <div class="chips rv d5" style="margin-top:1vh">
-            <a class="btn btn-gold" href="mailto:majda.pezdirc@gmail.com?subject=River%20Kolpa%20Apartments%20—%20povpra%C5%A1evanje%20Griblje%2070&body=Pozdravljeni%2C%0D%0A%0D%0Azanima%20me%20termin%20v%20Gribljih%2070.%0D%0A%0D%0ATermin%3A%20%0D%0A%C5%A0tevilo%20oseb%3A%20%0D%0ATelefon%3A%20%0D%0A%0D%0AHvala!">Vprašaj za Griblje 70 <span class="arr">→</span></a>
-            <a class="btn btn-ghost" data-go="2">Druga hiša: Griblje 30 b</a>
-            <a class="btn btn-ghost zem" href="https://www.google.com/maps/search/?api=1&query=Griblje+70+8332+Gradac+Slovenija" target="_blank" rel="noopener">Zemljevid</a>
+            <a class="btn btn-gold" href="mailto:majda.pezdirc@gmail.com?subject=River%20Kolpa%20Apartments%20—%20povpra%C5%A1evanje%20Griblje%2070&body=Pozdravljeni%2C%0D%0A%0D%0Azanima%20me%20termin%20v%20Gribljih%2070.%0D%0A%0D%0ATermin%3A%20%0D%0A%C5%A0tevilo%20oseb%3A%20%0D%0ATelefon%3A%20%0D%0A%0D%0AHvala!" data-i18n="btnAsk70">Vprašaj za Griblje 70 <span class="arr">→</span></a>
+            <a class="btn btn-ghost" href="#h30b" data-go="2" data-i18n="btnOther30">Druga hiša: Griblje 30 b</a>
+            <a class="btn btn-ghost zem" href="https://www.google.com/maps/search/?api=1&query=Griblje+70+8332+Gradac+Slovenija" target="_blank" rel="noopener" data-i18n="btnMap">Zemljevid</a>
           </div>
         </div>
       </div>
@@ -420,25 +465,25 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
           <div class="vstrip" data-strip="v30b"></div>
         </div>
         <div>
-          <div class="rv d1" style="display:flex;align-items:center;gap:1rem;margin-bottom:.55rem"><span class="num">02</span><span class="rule"></span><span class="kicker">Druga hiša</span></div>
-          <h2 class="title rv d1">Griblje 30 b — <em>hiša z nadstreškom</em></h2>
-          <p class="lead rv d2">Dva samostojna apartmaja v urejeni hiši. Kuhinja s pečico in štedilnikom, kopalnica s tušem in pralnim strojem, nadstrešena terasa z jacuzzijem in travnik z nogometnimi vrati.</p>
+          <div class="rv d1" style="display:flex;align-items:center;gap:1rem;margin-bottom:.55rem"><span class="num">02</span><span class="rule"></span><span class="kicker" data-i18n="h30Kicker">Druga hiša</span></div>
+          <h2 class="title rv d1">Griblje 30 b — <em data-i18n="h30Em">hiša z nadstreškom</em></h2>
+          <p class="lead rv d2" data-i18n="h30Lead">Dva samostojna apartmaja v urejeni hiši. Kuhinja s pečico in štedilnikom, kopalnica s tušem in pralnim strojem, nadstrešena terasa z jacuzzijem in travnik z nogometnimi vrati.</p>
           <div class="fakti rv d2">
-            <div class="fakt"><div class="n">2</div><div class="l">apartmaja</div></div>
-            <div class="fakt"><div class="n">Jacuzzi</div><div class="l">pod nadstreškom</div></div>
-            <div class="fakt"><div class="n">Travnik</div><div class="l">nogometna vrata</div></div>
-            <div class="fakt"><div class="n">Tuš</div><div class="l">+ pralni stroj</div></div>
+            <div class="fakt"><div class="n">2</div><div class="l" data-i18n="fApart">apartmaja</div></div>
+            <div class="fakt"><div class="n">Jacuzzi</div><div class="l" data-i18n="fJacUnder">pod nadstreškom</div></div>
+            <div class="fakt"><div class="n">Travnik</div><div class="l" data-i18n="fGoals">nogometna vrata</div></div>
+            <div class="fakt"><div class="n">Tuš</div><div class="l" data-i18n="fWasher">+ pralni stroj</div></div>
           </div>
           <div class="enote rv d3">
-            <div class="enota"><b>Dva samostojna apartmaja</b><span>razpored ležišč potrdimo ob povpraševanju</span></div>
+            <div class="enota"><b data-i18n="h30u1b">Dva samostojna apartmaja</b><span data-i18n="h30u1s">razpored ležišč potrdimo ob povpraševanju</span></div>
           </div>
           <div class="chips rv d4">
-            <span class="chip">Brezplačen WiFi</span><span class="chip">Kuhinja s pečico in štedilnikom</span><span class="chip">Kopalnica s tušem</span><span class="chip">Jacuzzi na terasi</span><span class="chip">Ograjen travnik</span>
+            <span class="chip" data-i18n="chWifi">Brezplačen WiFi</span><span class="chip" data-i18n="chKit2">Kuhinja s pečico in štedilnikom</span><span class="chip" data-i18n="chBath">Kopalnica s tušem</span><span class="chip" data-i18n="chJacT">Jacuzzi na terasi</span><span class="chip" data-i18n="chGarden2">Ograjen travnik</span>
           </div>
           <div class="chips rv d5" style="margin-top:1vh">
-            <a class="btn btn-gold" href="mailto:majda.pezdirc@gmail.com?subject=River%20Kolpa%20Apartments%20—%20povpra%C5%A1evanje%20Griblje%2030%20b&body=Pozdravljeni%2C%0D%0A%0D%0Azanima%20me%20termin%20v%20Gribljih%2030%20b.%0D%0A%0D%0ATermin%3A%20%0D%0A%C5%A0tevilo%20oseb%3A%20%0D%0ATelefon%3A%20%0D%0A%0D%0AHvala!">Vprašaj za Griblje 30 b <span class="arr">→</span></a>
-            <a class="btn btn-ghost" data-go="1">Druga hiša: Griblje 70</a>
-            <a class="btn btn-ghost zem" href="https://www.google.com/maps/search/?api=1&query=Griblje+30+b+8332+Gradac+Slovenija" target="_blank" rel="noopener">Zemljevid</a>
+            <a class="btn btn-gold" href="mailto:majda.pezdirc@gmail.com?subject=River%20Kolpa%20Apartments%20—%20povpra%C5%A1evanje%20Griblje%2030%20b&body=Pozdravljeni%2C%0D%0A%0D%0Azanima%20me%20termin%20v%20Gribljih%2030%20b.%0D%0A%0D%0ATermin%3A%20%0D%0A%C5%A0tevilo%20oseb%3A%20%0D%0ATelefon%3A%20%0D%0A%0D%0AHvala!" data-i18n="btnAsk30">Vprašaj za Griblje 30 b <span class="arr">→</span></a>
+            <a class="btn btn-ghost" href="#h70" data-go="1" data-i18n="btnOther70">Druga hiša: Griblje 70</a>
+            <a class="btn btn-ghost zem" href="https://www.google.com/maps/search/?api=1&query=Griblje+30+b+8332+Gradac+Slovenija" target="_blank" rel="noopener" data-i18n="btnMap">Zemljevid</a>
           </div>
         </div>
       </div>
@@ -451,10 +496,10 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
       <div class="wrap">
         <div class="reka-head">
           <div>
-            <div class="rv" style="display:flex;align-items:center;gap:1rem;margin-bottom:.55rem"><span class="num">03</span><span class="rule"></span><span class="kicker">Reka Kolpa</span></div>
-            <h2 class="title rv d1" style="margin-bottom:0">Deset minut hoje — <em>naravno kopališče</em></h2>
+            <div class="rv" style="display:flex;align-items:center;gap:1rem;margin-bottom:.55rem"><span class="num">03</span><span class="rule"></span><span class="kicker" data-i18n="rkKicker">Reka Kolpa</span></div>
+            <h2 class="title rv d1" style="margin-bottom:0">Deset minut hoje — <em data-i18n="rkEm">naravno kopališče</em></h2>
           </div>
-          <span class="reka-note rv d1">Najtoplejša slovenska reka · <b>poleti preko 24 °C</b></span>
+          <span class="reka-note rv d1" data-i18n="rkNote" data-i18n-html="1">Najtoplejša slovenska reka · <b>poleti preko 24 °C</b></span>
         </div>
         <div class="rv d2">
           <div class="viewer" data-viewer="vreka">
@@ -475,13 +520,17 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
     <div class="inner">
       <div class="wrap" style="height:100%;display:flex;flex-direction:column">
         <div class="gal-top">
-          <div style="display:flex;align-items:center;gap:1rem;margin-bottom:.2rem"><span class="num">04</span><span class="rule"></span><span class="kicker">Galerija</span></div>
-          <h2 class="title" style="margin:0">Pogled skozi <em>objektiv</em></h2>
-          <span class="kicker" style="color:var(--ink-dim)">Klikni sličico ali veliko sliko <b style="color:var(--gold)">za polni ogled</b></span>
+          <div style="display:flex;align-items:center;gap:1rem;margin-bottom:.2rem"><span class="num">04</span><span class="rule"></span><span class="kicker" data-i18n="galKicker">Galerija</span></div>
+          <h2 class="title" style="margin:0">Pogled skozi <em data-i18n="galEm">objektiv</em></h2>
+          <span class="kicker" style="color:var(--ink-dim)" data-i18n="galHint" data-i18n-html="1">Klikni sličico ali veliko sliko <b style="color:var(--gold)">za polni ogled</b></span>
         </div>
-        <div class="rv d1" style="flex:1;min-height:0;display:flex;flex-direction:column">
+        <div class="gal-tools rv d1">
+          <div class="gal-search"><input id="galQ" type="search" data-i18n-ph="galSearchPh" data-i18n-aria="galSearchPh" placeholder="Išči po napisu …"></div>
+          <div class="gal-filters" id="galFilters" role="group" data-i18n-aria="galFAria"></div>
+        </div>
+        <div class="rv d2" style="flex:1;min-height:0;display:flex;flex-direction:column">
           <div class="viewer" data-viewer="vgal" style="flex:1;display:flex;flex-direction:column">
-            <div class="vmain"></div>
+            <div class="vmain"><div class="gal-empty" id="galEmpty" hidden data-i18n="galEmpty">Ni zadetkov</div></div>
             <button class="vb prev" aria-label="Prejšnja slika">‹</button>
             <button class="vb next" aria-label="Naslednja slika">›</button>
             <span class="cap"><i>01</i> — <span class="cap-t"></span></span>
@@ -498,59 +547,78 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
     <div class="inner">
       <div class="wrap term-grid">
         <div>
-          <div class="rv" style="display:flex;align-items:center;gap:1rem;margin-bottom:.55rem"><span class="num">05</span><span class="rule"></span><span class="kicker">Povpraševanje</span></div>
-          <h2 class="title rv d1">Rezervirajte svoj <em>termin</em></h2>
-          <p class="lead rv d1">Neposredna rezervacija po telefonu ali e-pošti — brez provizije. Prek Booking.com plačilo ureja Booking.com.</p>
+          <div class="rv" style="display:flex;align-items:center;gap:1rem;margin-bottom:.55rem"><span class="num">05</span><span class="rule"></span><span class="kicker" data-i18n="tmKicker">Povpraševanje</span></div>
+          <h2 class="title rv d1">Rezervirajte svoj <em data-i18n="tmEm">termin</em></h2>
+          <p class="lead rv d1" data-i18n="tmLead">Neposredna rezervacija po telefonu ali e-pošti — brez provizije. Prek Booking.com plačilo ureja Booking.com.</p>
           <div class="c-cards">
             <a class="c-card rv d2" href="tel:+38640858732">
               <span class="ico"><svg viewBox="0 0 24 24"><path d="M6 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L16 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3z"/></svg></span>
-              <span class="v"><b>+386 40 858 732</b><span>Pokliči zdaj</span></span>
+              <span class="v"><b>+386 40 858 732</b><span data-i18n="cardCall">Pokliči zdaj</span></span>
             </a>
             <a class="c-card rv d3" href="mailto:majda.pezdirc@gmail.com?subject=River%20Kolpa%20Apartments%20—%20povpra%C5%A1evanje&body=Pozdravljeni%2C%0D%0A%0D%0Azanima%20me%20termin%20v%20Gribljah.%0D%0A%0D%0ATermin%3A%20%0D%0A%C5%A0tevilo%20oseb%3A%20%0D%0ATelefon%3A%20%0D%0A%0D%0AHvala!">
               <span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 6 8-6"/></svg></span>
-              <span class="v"><b>majda.pezdirc@gmail.com</b><span>Piši nam</span></span>
+              <span class="v"><b>majda.pezdirc@gmail.com</b><span data-i18n="cardMail">Piši nam</span></span>
             </a>
             <a class="c-card rv d4" href="https://www.booking.com/hotel/si/holiday-house-kolpa.sl.html" target="_blank" rel="noopener">
               <span class="ico"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
-              <span class="v"><b>Booking.com — Griblje 70</b><span>Ocena 10/10 · 8 mnenj</span></span>
+              <span class="v"><b>Booking.com — Griblje 70</b><span data-i18n="cardBkg">Ocena 10/10 · 8 mnenj</span></span>
             </a>
             <a class="c-card rv d5" href="https://www.facebook.com/p/RIVER-KOLPA-Apartment-Griblje-Bela-krajina-Slovenia-100063596405674/" target="_blank" rel="noopener">
               <span class="ico"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8a1 1 0 0 1 1-1Z" fill="currentColor" stroke="none"/></svg></span>
-              <span class="v"><b>Facebook — River Kolpa Apartment</b><span>Sledi novicam & slikam</span></span>
+              <span class="v"><b>Facebook — River Kolpa Apartment</b><span data-i18n="cardFb">Sledi novicam & slikam</span></span>
             </a>
           </div>
-          <figure class="mnenje rv d5" id="mnenje"><q></q><cite></cite></figure>
-          <p class="legal rv d5">LOGIS APARTMENTS, Majda Pezdirc s.p. · Griblje 30 b, 8332 Gradac · matična št. 9057641000 · davčna št. SI97033910<br>Turistična taksa Občine Črnomelj 2,00 € / osebo / dan · Ljubljenčki ob predhodni najavi, doplačilo 20 € na bivanje</p>
+          <figure class="mnenje rv d5" id="mnenje"><q></q><cite></cite>
+            <div class="mctl">
+              <button id="mPrev" aria-label="Prejšnje mnenje">‹</button>
+              <button id="mPlay" aria-label="Ustavi / predvajaj">❚❚</button>
+              <button id="mNext" aria-label="Naslednje mnenje">›</button>
+              <button id="mAdd" class="add" aria-expanded="false" data-i18n="revAdd">Dodaj mnenje</button>
+            </div>
+            <div class="mrev" id="mRev">
+              <p class="note" data-i18n="revNote">Mnenje bomo po preverjanju objavili. Obrazec odpre e-pošto s pripravljenim sporočilom.</p>
+              <div class="field"><label for="rv-name" data-i18n="rvNameL">Ime</label><input id="rv-name" type="text" data-i18n-ph="rvNamePh" placeholder="Vaše ime"></div>
+              <div class="field"><label for="rv-score" data-i18n="rvScoreL">Ocena</label>
+                <select id="rv-score"><option>10 / 10</option><option>9 / 10</option><option>8 / 10</option><option>7 / 10</option><option>6 / 10</option><option>5 / 10</option></select>
+              </div>
+              <div class="field"><label for="rv-text" data-i18n="rvTextL">Mnenje</label><textarea id="rv-text" data-i18n-ph="rvTextPh" placeholder="Vaše mnenje o bivanju …"></textarea></div>
+              <button type="button" class="btn btn-ghost" id="rvSend" data-i18n="rvSend">Pošlji mnenje <span class="arr">→</span></button>
+            </div>
+          </figure>
+          <p class="legal rv d5"><span data-i18n="legalCo">LOGIS APARTMENTS, Majda Pezdirc s.p. · Griblje 30 b, 8332 Gradac · matična št. 9057641000 · davčna št. SI97033910</span><br><span data-i18n="legalInfo">Turistična taksa Občine Črnomelj 2,00 € / osebo / dan · Ljubljenčki ob predhodni najavi, doplačilo 20 € na bivanje</span></p>
         </div>
         <div>
           <form class="c-form rv d2" id="bookForm">
-            <h3>Povpraševanje</h3>
-            <p class="note">Izpolnite obrazec — odpre se vaš e-poštni program s pripravljenim sporočilom.</p>
-            <div class="field"><label for="f-name">Ime in priimek</label><input id="f-name" name="ime" type="text" placeholder="Vaše ime" required></div>
-            <div class="field"><label for="f-mail">E-pošta</label><input id="f-mail" name="posta" type="email" placeholder="ime@domena.si" required></div>
-            <div class="field"><label for="f-house">Hiša</label>
+            <h3 data-i18n="formH">Povpraševanje</h3>
+            <p class="note" data-i18n="formNote">Izpolnite obrazec — odpre se vaš e-poštni program s pripravljenim sporočilom.</p>
+            <div class="field"><label for="f-name" data-i18n="fNameL">Ime in priimek</label><input id="f-name" name="ime" type="text" data-i18n-ph="fNamePh" placeholder="Vaše ime" required></div>
+            <div class="field"><label for="f-mail" data-i18n="fMailL">E-pošta</label><input id="f-mail" name="posta" type="email" data-i18n-ph="fMailPh" placeholder="ime@domena.si" required></div>
+            <div class="field"><label for="f-house" data-i18n="fHouseL">Hiša</label>
               <select id="f-house" name="hisa">
-                <option>Griblje 70 — apartma za 7 oseb</option>
-                <option>Griblje 70 — studio za 5 oseb</option>
-                <option>Griblje 30 b — apartma A</option>
-                <option>Griblje 30 b — apartma B</option>
-                <option>Katerakoli / svetujte</option>
+                <option data-i18n="o70a">Griblje 70 — apartma za 7 oseb</option>
+                <option data-i18n="o70s">Griblje 70 — studio za 5 oseb</option>
+                <option data-i18n="o30a">Griblje 30 b — apartma A</option>
+                <option data-i18n="o30b">Griblje 30 b — apartma B</option>
+                <option data-i18n="oAny">Katerakoli / svetujte</option>
               </select>
             </div>
-            <div class="field"><label for="f-dates">Termin</label><input id="f-dates" name="termin" type="text" placeholder="npr. 12.–19. julij 2027"></div>
-            <div class="field"><label for="f-people">Osebe</label>
+            <div class="field"><label for="f-dates" data-i18n="fDatesL">Termin</label>
+              <div class="cal" id="cal"></div>
+              <input id="f-dates" name="termin" type="hidden">
+            </div>
+            <div class="field"><label for="f-people" data-i18n="fPeopleL">Osebe</label>
               <select id="f-people" name="osebe">
-                <option>1–4 osebe</option><option selected>5–6 oseb</option><option>7 oseb</option><option>8+ oseb (obe hiši)</option>
+                <option data-i18n="p1">1–4 osebe</option><option selected data-i18n="p2">5–6 oseb</option><option data-i18n="p3">7 oseb</option><option data-i18n="p4">8+ oseb (obe hiši)</option>
               </select>
             </div>
-            <div class="field"><label for="f-msg">Sporočilo</label><textarea id="f-msg" name="sporocilo" placeholder="Pozdravljeni, zanima nas rezervacija za ..."></textarea></div>
-            <button type="submit" class="btn btn-gold">Pošlji povpraševanje <span class="arr">→</span></button>
+            <div class="field"><label for="f-msg" data-i18n="fMsgL">Sporočilo</label><textarea id="f-msg" name="sporocilo" data-i18n-ph="fMsgPh" placeholder="Pozdravljeni, zanima nas rezervacija za ..."></textarea></div>
+            <button type="submit" class="btn btn-gold" data-i18n="formSend">Pošlji povpraševanje <span class="arr">→</span></button>
           </form>
           <div class="rules rv d3">
-            <div class="rule-b"><b>Prijava / odjava</b><span>Prijava 15.00–22.00, odjava 9.30–10.00. Sporočite čas prihoda.</span></div>
-            <div class="rule-b"><b>Otroci</b><span>Vsi starosti dobrodošli. Cena odvisna od števila oseb.</span></div>
-            <div class="rule-b"><b>Ljubljenčki</b><span>Ob predhodni najavi, doplačilo 20 € na bivanje.</span></div>
-            <div class="rule-b"><b>Nočni mir</b><span>Med 22.00 in 6.00. Kajenje v prostorih prepovedano.</span></div>
+            <div class="rule-b"><b data-i18n="rInOutT">Prijava / odjava</b><span data-i18n="rInOutS">Prijava 15.00–22.00, odjava 9.30–10.00. Sporočite čas prihoda.</span></div>
+            <div class="rule-b"><b data-i18n="rKidsT">Otroci</b><span data-i18n="rKidsS">Vsi starosti dobrodošli. Cena odvisna od števila oseb.</span></div>
+            <div class="rule-b"><b data-i18n="rPetsT">Ljubljenčki</b><span data-i18n="rPetsS">Ob predhodni najavi, doplačilo 20 € na bivanje.</span></div>
+            <div class="rule-b"><b data-i18n="rQuietT">Nočni mir</b><span data-i18n="rQuietS">Med 22.00 in 6.00. Kajenje v prostorih prepovedano.</span></div>
           </div>
         </div>
       </div>
@@ -561,14 +629,14 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
 
 <!-- ======= DOCK ======= -->
 <div class="dock">
-  <div class="where"><span class="n" id="dNum">01</span><span class="t" id="dName">Domov</span></div>
+  <div class="where"><span class="n" id="dNum">01</span><span class="t" id="dName" aria-live="polite">Domov</span></div>
   <div class="mq" aria-hidden="true">
     <div class="track">
-      <span>Kolpa — najtoplejša reka Slovenije</span><span>10 minut hoje do kopališča</span><span>Jacuzzi na vsakem vrtu</span><span>Ograjen vrt — zasebnost</span><span>Ljubljenčki dobrodošli</span><span>Rezervacija brez provizije</span>
-      <span>Kolpa — najtoplejša reka Slovenije</span><span>10 minut hoje do kopališča</span><span>Jacuzzi na vsakem vrtu</span><span>Ograjen vrt — zasebnost</span><span>Ljubljenčki dobrodošli</span><span>Rezervacija brez provizije</span>
+      <span data-i18n="mq0">Kolpa — najtoplejša reka Slovenije</span><span data-i18n="mq1">10 minut hoje do kopališča</span><span data-i18n="mq2">Jacuzzi na vsakem vrtu</span><span data-i18n="mq3">Ograjen vrt — zasebnost</span><span data-i18n="mq4">Ljubljenčki dobrodošli</span><span data-i18n="mq5">Rezervacija brez provizije</span>
+      <span data-i18n="mq0">Kolpa — najtoplejša reka Slovenije</span><span data-i18n="mq1">10 minut hoje do kopališča</span><span data-i18n="mq2">Jacuzzi na vsakem vrtu</span><span data-i18n="mq3">Ograjen vrt — zasebnost</span><span data-i18n="mq4">Ljubljenčki dobrodošli</span><span data-i18n="mq5">Rezervacija brez provizije</span>
     </div>
   </div>
-  <div class="dots" id="dots" role="tablist" aria-label="Prizori"></div>
+  <div class="dots" id="dots" role="tablist" aria-label="Prizori" data-i18n-aria="dotsAria"></div>
   <div class="navs">
     <button id="prevS" aria-label="Prejšnji prizor">‹</button>
     <button id="nextS" aria-label="Naslednji prizor">›</button>
@@ -590,81 +658,233 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
 "use strict";
 /* ============ PODATKI (iz arhiva nastanitve) ============ */
 const F = {
-  "terasa-studio":["Pokrita terasa z jedilno mizo in kotom za sprostitev","vrt"],
-  "letna-kuhinja":["Letna kuhinja pod lesenim nadstreškom","vrt"],
-  "pergola-vrt":["Pergola z belimi zavesami in jedilno mizo","vrt"],
-  "letna-kuhinja-detajl":["Letna kuhinja s ploščo za kuho, umivalnikom in orodjem na steni","vrt"],
-  "miza-pergola":["Pogled s pergole na vrt z ležalnikoma","vrt"],
-  "terasa-pregled":["Pergola z dolgo mizo in staro črpalko, uta v ozadju","vrt"],
-  "jacuzzi-terasa":["Vrtni kot z žarom in jacuzzijem","vrt"],
-  "gugal":["Viseči kokon med bršljanom","vrt"],
-  "vrt-05":["Ležalnik ob zunanji kuhinji","vrt"],
-  "noter-01":["Odprt dnevni prostor z jedilnico in kuhinjo","noter"],
-  "noter-02":["Kutna zofa pod lesenimi gredami","noter"],
-  "noter-03":["Opremljena kuhinja","noter"],
-  "hodnik-kisa":["Kurilni kot s pečjo na drva in pogledom v sobo","noter"],
-  "noter-10":["Predel za sedenje z ravnim televizorjem","noter"],
-  "soba-main":["Soba s tremi posteljami","noter"],
-  "soba-otroci":["Soba z dvema nadstavnima postelama","noter"],
-  "soba-kisa":["Kot s štedilnikom na drva","noter"],
-  "miza":["Pogrnjena miza pod leseno pergolo","izkus"],
-  "izkus-01":["Domača pogača iz lastne peči","izkus"],
-  "vrt-pregled":["Vrt s pergolo, jacuzzijem in dvema ležalnikoma","izkus"],
-  "masazna-kad":["Jacuzzi z mehurčki pod visečimi cvetlicami","izkus"],
-  "uta-dan":["Uta z jacuzzijem in lesenima ležalnikoma","izkus"],
-  "noc":["Jacuzzi na lesenem odru ob mraku","izkus"],
-  "vrt-lezniki":["Dva ležalnika pred jacuzzijem","izkus"],
-  "uta-noc":["Uta zvečer, čez vrt poteka vrsta lučk","izkus"],
-  "zunanjost-30b":["Hiša z nadstreškom in jacuzzijem","30b"],
-  "travnik-30b":["Travnik pred hišo z nogometnimi vrati in ležalniki","30b"],
-  "kopalnica-30b":["Kopalnica s tušem, umivalnikom in strojem za perilo","30b"],
-  "soba-30b-a":["Spalnica z zakonsko posteljo in omaro","30b"],
-  "soba-30b-b":["Spalnica z zakonsko posteljo in pobarvanim lesenim stropom","30b"],
-  "soba-30b-c":["Soba z zakonsko in enojno posteljo","30b"],
-  "kuhinja-30b":["Kuhinja s pečico, štedilnikom in jedilno mizo","30b"],
-  "hodnik-30b":["Predprostor z omaro za obutev in ogledalom","30b"],
-  "reka-01":["Reka Kolpa poleti z naravnim kopališčem","reka"],
-  "reka-02":["Kopanje v Kolpi","reka"],
-  "reka-03":["Brisače in senca na rečnem bregu","reka"],
-  "reka-04":["Kajak po Kolpi","reka"],
-  "reka-05":["Skok v reko z naravne police","reka"],
-  "reka-06":["Plitvina, kjer voda seže do pasu","reka"],
-  "reka-07":["Naravni vodni tobogan","reka"],
-  "reka-08":["Prodnat breg s pogledom na nasprotno stran","reka"]
+  "terasa-studio":["Pokrita terasa z jedilno mizo in kotom za sprostitev","Covered terrace with a dining table and lounging corner","vrt"],
+  "letna-kuhinja":["Letna kuhinja pod lesenim nadstreškom","Summer kitchen under a wooden canopy","vrt"],
+  "pergola-vrt":["Pergola z belimi zavesami in jedilno mizo","Pergola with white curtains and a dining table","vrt"],
+  "letna-kuhinja-detajl":["Letna kuhinja s ploščo za kuho, umivalnikom in orodjem na steni","Summer kitchen with a cooktop, sink and wall tools","vrt"],
+  "miza-pergola":["Pogled s pergole na vrt z ležalnikoma","View from the pergola to the garden with two loungers","vrt"],
+  "terasa-pregled":["Pergola z dolgo mizo in staro črpalko, uta v ozadju","Pergola with a long table and an old pump, gazebo behind","vrt"],
+  "jacuzzi-terasa":["Vrtni kot z žarom in jacuzzijem","Garden corner with a barbecue and jacuzzi","vrt"],
+  "gugal":["Viseči kokon med bršljanom","Hanging cocoon chair among ivy","vrt"],
+  "vrt-05":["Ležalnik ob zunanji kuhinji","Lounger next to the outdoor kitchen","vrt"],
+  "noter-01":["Odprt dnevni prostor z jedilnico in kuhinjo","Open living area with dining and kitchen","noter"],
+  "noter-02":["Kutna zofa pod lesenimi gredami","Corner sofa under wooden beams","noter"],
+  "noter-03":["Opremljena kuhinja","Fully equipped kitchen","noter"],
+  "hodnik-kisa":["Kurilni kot s pečjo na drva in pogledom v sobo","Heating corner with a wood stove and view into the room","noter"],
+  "noter-10":["Predel za sedenje z ravnim televizorjem","Sitting area with a flat-screen TV","noter"],
+  "soba-main":["Soba s tremi posteljami","Room with three beds","noter"],
+  "soba-otroci":["Soba z dvema nadstavnima postelama","Room with two bunk beds","noter"],
+  "soba-kisa":["Kot s štedilnikom na drva","Corner with a wood-burning stove","noter"],
+  "miza":["Pogrnjena miza pod leseno pergolo","Set table under a wooden pergola","izkus"],
+  "izkus-01":["Domača pogača iz lastne peči","Homemade flatbread from the wood oven","izkus"],
+  "vrt-pregled":["Vrt s pergolo, jacuzzijem in dvema ležalnikoma","Garden with pergola, jacuzzi and two loungers","izkus"],
+  "masazna-kad":["Jacuzzi z mehurčki pod visečimi cvetlicami","Jacuzzi with bubbles under hanging flowers","izkus"],
+  "uta-dan":["Uta z jacuzzijem in lesenima ležalnikoma","Gazebo with jacuzzi and wooden loungers","izkus"],
+  "noc":["Jacuzzi na lesenem odru ob mraku","Jacuzzi on a wooden deck at dusk","izkus"],
+  "vrt-lezniki":["Dva ležalnika pred jacuzzijem","Two loungers in front of the jacuzzi","izkus"],
+  "uta-noc":["Uta zvečer, čez vrt poteka vrsta lučk","Gazebo in the evening, a string of lights across the garden","izkus"],
+  "zunanjost-30b":["Hiša z nadstreškom in jacuzzijem","House with a carport and jacuzzi","30b"],
+  "travnik-30b":["Travnik pred hišo z nogometnimi vrati in ležalniki","Lawn in front of the house with football goals and loungers","30b"],
+  "kopalnica-30b":["Kopalnica s tušem, umivalnikom in strojem za perilo","Bathroom with shower, washbasin and washing machine","30b"],
+  "soba-30b-a":["Spalnica z zakonsko posteljo in omaro","Bedroom with a double bed and wardrobe","30b"],
+  "soba-30b-b":["Spalnica z zakonsko posteljo in pobarvanim lesenim stropom","Bedroom with a double bed and painted wooden ceiling","30b"],
+  "soba-30b-c":["Soba z zakonsko in enojno posteljo","Room with a double and a single bed","30b"],
+  "kuhinja-30b":["Kuhinja s pečico, štedilnikom in jedilno mizo","Kitchen with oven, stove and dining table","30b"],
+  "hodnik-30b":["Predprostor z omaro za obutev in ogledalom","Hallway with a shoe cabinet and mirror","30b"],
+  "reka-01":["Reka Kolpa poleti z naravnim kopališčem","The Kolpa river in summer with a natural swimming spot","reka"],
+  "reka-02":["Kopanje v Kolpi","Swimming in the Kolpa","reka"],
+  "reka-03":["Brisače in senca na rečnem bregu","Towels and shade on the riverbank","reka"],
+  "reka-04":["Kajak po Kolpi","Kayaking on the Kolpa","reka"],
+  "reka-05":["Skok v reko z naravne police","Jumping into the river from a natural ledge","reka"],
+  "reka-06":["Plitvina, kjer voda seže do pasu","A shallow where the water reaches waist height","reka"],
+  "reka-07":["Naravni vodni tobogan","Natural water slide","reka"],
+  "reka-08":["Prodnat breg s pogledom na nasprotno stran","Pebble bank with a view across the river","reka"]
 };
+
+/* ============ PREVODI ============ */
+const T = {
+  sl: {
+    skip:"Preskoči na vsebino", brandSub:"Griblje · Bela krajina",
+    m0:"Domov", m1:"Griblje 70", m2:"Griblje 30 b", m3:"Reka Kolpa", m4:"Galerija", m5:"Povpraševanje", mCta:"Rezerviraj",
+    heroKicker:"Griblje pri Gradcu · Bela krajina · Slovenija",
+    heroThin:"dve hiši ob najtoplejši reki",
+    heroTag:"Štiri samostojni apartmaji na dveh naslovih — terasa, jacuzzi, ograjen vrt in deset minut hoje do naravnega kopališča na Kolpi. Brezplačen WiFi in parkirišče.",
+    stHouses:"hiši", stApart:"apartmaji", stWalk:"hoje do reke", stRev:"mnenja gostov",
+    card70m:"Apartma za 7 + studio za 5", card70x:"Pergola, letna kuhinja, jacuzzi na vrtu",
+    card30m:"Dva samostojna apartmaja", card30x:"Jacuzzi pod nadstreškom, travnik z nogometnimi vrati",
+    h70Kicker:"Prva hiša", h70Em:"hiša s pergolo",
+    h70Lead:"Prenovljena hiša z dvema samostojnima apartmajema. Skupen ograjen vrt s pergolo, letno kuhinjo in jacuzzijem; do naravnega kopališča na Kolpi je deset minut hoje.",
+    fUnits:"enoti", fPersons:"oseb", fRiver:"do reke",
+    h70u1b:"Apartma za 7 oseb", h70u1s:"7 ležišč v dveh spalnicah · lastna terasa",
+    h70u2b:"Studio za 5 oseb", h70u2s:"nadstavna postelja in raztegljiv kavč",
+    chWifi:"Brezplačen WiFi", chPark:"Brezplačno parkirišče", chAc:"Klimatska naprava", chStove:"Štedilnik na drva",
+    chKit:"Opremljena kuhinja", chJac:"Jacuzzi na vrtu", chGarden:"Ograjen vrt", chPets:"Ljubljenčki ob najavi",
+    btnAsk70:"Vprašaj za Griblje 70 ", btnOther30:"Druga hiša: Griblje 30 b", btnMap:"Zemljevid",
+    h30Kicker:"Druga hiša", h30Em:"hiša z nadstreškom",
+    h30Lead:"Dva samostojna apartmaja v urejeni hiši. Kuhinja s pečico in štedilnikom, kopalnica s tušem in pralnim strojem, nadstrešena terasa z jacuzzijem in travnik z nogometnimi vrati.",
+    fApart:"apartmaja", fJacUnder:"pod nadstreškom", fGoals:"nogometna vrata", fWasher:"+ pralni stroj",
+    h30u1b:"Dva samostojna apartmaja", h30u1s:"razpored ležišč potrdimo ob povpraševanju",
+    chKit2:"Kuhinja s pečico in štedilnikom", chBath:"Kopalnica s tušem", chJacT:"Jacuzzi na terasi", chGarden2:"Ograjen travnik",
+    btnAsk30:"Vprašaj za Griblje 30 b ", btnOther70:"Druga hiša: Griblje 70",
+    rkKicker:"Reka Kolpa", rkEm:"naravno kopališče",
+    rkNote:"Najtoplejša slovenska reka · <b>poleti preko 24 °C</b>",
+    galKicker:"Galerija", galEm:"objektiv",
+    galHint:"Klikni sličico ali veliko sliko <b style=\"color:var(--gold)\">za polni ogled</b>",
+    galSearchPh:"Išči po napisu …", galEmpty:"Ni zadetkov", galFAria:"Filtri",
+    galFall:"Vse", galFvrt:"Vrt", galFnoter:"Notranje", galFizkus:"Izkušnja", galF30b:"Griblje 30 b", galFreka:"Reka",
+    tmKicker:"Povpraševanje", tmEm:"termin",
+    tmLead:"Neposredna rezervacija po telefonu ali e-pošti — brez provizije. Prek Booking.com plačilo ureja Booking.com.",
+    cardCall:"Pokliči zdaj", cardMail:"Piši nam", cardBkg:"Ocena 10/10 · 8 mnenj", cardFb:"Sledi novicam & slikam",
+    revAdd:"Dodaj mnenje", revAddOn:"Zapri",
+    revNote:"Mnenje bomo po preverjanju objavili. Obrazec odpre e-pošto s pripravljenim sporočilom.",
+    rvNameL:"Ime", rvNamePh:"Vaše ime", rvScoreL:"Ocena", rvTextL:"Mnenje", rvTextPh:"Vaše mnenje o bivanju …",
+    rvSend:"Pošlji mnenje ",
+    legalCo:"LOGIS APARTMENTS, Majda Pezdirc s.p. · Griblje 30 b, 8332 Gradac · matična št. 9057641000 · davčna št. SI97033910",
+    legalInfo:"Turistična taksa Občine Črnomelj 2,00 € / osebo / dan · Ljubljenčki ob predhodni najavi, doplačilo 20 € na bivanje",
+    formH:"Povpraševanje", formNote:"Izpolnite obrazec — odpre se vaš e-poštni program s pripravljenim sporočilom.",
+    fNameL:"Ime in priimek", fNamePh:"Vaše ime", fMailL:"E-pošta", fMailPh:"ime@domena.si", fHouseL:"Hiša", fDatesL:"Termin", fPeopleL:"Osebe", fMsgL:"Sporočilo",
+    fMsgPh:"Pozdravljeni, zanima nas rezervacija za ...",
+    o70a:"Griblje 70 — apartma za 7 oseb", o70s:"Griblje 70 — studio za 5 oseb", o30a:"Griblje 30 b — apartma A", o30b:"Griblje 30 b — apartma B", oAny:"Katerakoli / svetujte",
+    p1:"1–4 osebe", p2:"5–6 oseb", p3:"7 oseb", p4:"8+ oseb (obe hiši)",
+    formSend:"Pošlji povpraševanje ",
+    rInOutT:"Prijava / odjava", rInOutS:"Prijava 15.00–22.00, odjava 9.30–10.00. Sporočite čas prihoda.",
+    rKidsT:"Otroci", rKidsS:"Vsi starosti dobrodošli. Cena odvisna od števila oseb.",
+    rPetsT:"Ljubljenčki", rPetsS:"Ob predhodni najavi, doplačilo 20 € na bivanje.",
+    rQuietT:"Nočni mir", rQuietS:"Med 22.00 in 6.00. Kajenje v prostorih prepovedano.",
+    mq0:"Kolpa — najtoplejša reka Slovenije", mq1:"10 minut hoje do kopališča", mq2:"Jacuzzi na vsakem vrtu",
+    mq3:"Ograjen vrt — zasebnost", mq4:"Ljubljenčki dobrodošli", mq5:"Rezervacija brez provizije",
+    names:["Domov","Griblje 70","Griblje 30 b","Reka Kolpa","Galerija","Povpraševanje"],
+    calPrev:"Prejšnji mesec", calNext:"Naslednji mesec",
+    months:["Januar","Februar","Marec","April","Maj","Junij","Julij","Avgust","September","Oktober","November","December"],
+    dows:["Po","To","Sr","Če","Pe","So","Ne"],
+    calNote:"Kliknite dan prihoda in nato dan odhoda — ali samo dan prihoda za okvirno povpraševanje. Minimalno bivanje: 2 noči.",
+    calSel:"Prijava: {in} · Odjava: {out} · {n} noči",
+    calSelOne:"Prijava: {in} · odjava po dogovoru",
+    calNone:"Izberite datum na koledarju",
+    revScore:" · {s} / 10",
+    dotsAria:"Prizori", aPrev:"Prejšnji prizor", aNext:"Naslednji prizor", aPrevImg:"Prejšnja slika", aNextImg:"Naslednja slika",
+    aClose:"Zapri", aLb:"Veliki ogled fotografije", aMenu:"Meni", aBrand:"River Kolpa Apartments — domov",
+    lbCap:"Veliki ogled fotografije",
+    mPrev:"Prejšnje mnenje", mNext:"Naslednje mnenje", mPlay:"Ustavi / predvajaj"
+  },
+  en: {
+    skip:"Skip to content", brandSub:"Griblje · Bela krajina",
+    m0:"Home", m1:"Griblje 70", m2:"Griblje 30 b", m3:"Kolpa River", m4:"Gallery", m5:"Inquiry", mCta:"Book now",
+    heroKicker:"Griblje pri Gradcu · Bela krajina · Slovenia",
+    heroThin:"two houses by the warmest river",
+    heroTag:"Four self-contained apartments at two addresses — terrace, jacuzzi, enclosed garden and a ten-minute walk to the natural swimming spot on the Kolpa. Free WiFi and parking.",
+    stHouses:"houses", stApart:"apartments", stWalk:"min walk to river", stRev:"guest reviews",
+    card70m:"Apartment for 7 + studio for 5", card70x:"Pergola, summer kitchen, garden jacuzzi",
+    card30m:"Two self-contained apartments", card30x:"Jacuzzi under the carport, lawn with football goals",
+    h70Kicker:"First house", h70Em:"house with a pergola",
+    h70Lead:"Renovated house with two self-contained apartments. A shared enclosed garden with a pergola, summer kitchen and jacuzzi; the natural swimming spot on the Kolpa is a ten-minute walk away.",
+    fUnits:"units", fPersons:"persons", fRiver:"to the river",
+    h70u1b:"Apartment for 7", h70u1s:"7 beds in two bedrooms · private terrace",
+    h70u2b:"Studio for 5", h70u2s:"bunk bed and a pull-out sofa",
+    chWifi:"Free WiFi", chPark:"Free parking", chAc:"Air conditioning", chStove:"Wood stove",
+    chKit:"Equipped kitchen", chJac:"Garden jacuzzi", chGarden:"Enclosed garden", chPets:"Pets on request",
+    btnAsk70:"Ask about Griblje 70 ", btnOther30:"Other house: Griblje 30 b", btnMap:"Map",
+    h30Kicker:"Second house", h30Em:"house with a carport",
+    h30Lead:"Two self-contained apartments in a neat house. Kitchen with oven and stove, bathroom with shower and washing machine, a covered terrace with jacuzzi and a lawn with football goals.",
+    fApart:"apartments", fJacUnder:"under carport", fGoals:"football goals", fWasher:"+ washing machine",
+    h30u1b:"Two self-contained apartments", h30u1s:"bed layout confirmed upon inquiry",
+    chKit2:"Kitchen with oven and stove", chBath:"Bathroom with shower", chJacT:"Terrace jacuzzi", chGarden2:"Enclosed lawn",
+    btnAsk30:"Ask about Griblje 30 b ", btnOther70:"Other house: Griblje 70",
+    rkKicker:"Kolpa River", rkEm:"natural swimming spot",
+    rkNote:"The warmest Slovenian river · <b>over 24 °C in summer</b>",
+    galKicker:"Gallery", galEm:"the lens",
+    galHint:"Click a thumbnail or the large image <b style=\"color:var(--gold)\">for full view</b>",
+    galSearchPh:"Search captions…", galEmpty:"No matches", galFAria:"Filters",
+    galFall:"All", galFvrt:"Garden", galFnoter:"Interiors", galFizkus:"Experience", galF30b:"Griblje 30 b", galFreka:"River",
+    tmKicker:"Inquiry", tmEm:"your stay",
+    tmLead:"Direct booking by phone or email — no commission. Via Booking.com, payment is handled by Booking.com.",
+    cardCall:"Call now", cardMail:"Email us", cardBkg:"Rating 10/10 · 8 reviews", cardFb:"Follow news & photos",
+    revAdd:"Add a review", revAddOn:"Close",
+    revNote:"We will publish your review after verification. The form opens an email with a prepared message.",
+    rvNameL:"Name", rvNamePh:"Your name", rvScoreL:"Rating", rvTextL:"Review", rvTextPh:"Your review of the stay…",
+    rvSend:"Send review ",
+    legalCo:"LOGIS APARTMENTS, Majda Pezdirc s.p. · Griblje 30 b, 8332 Gradac · registration no. 9057641000 · VAT no. SI97033910",
+    legalInfo:"Tourist tax of Municipality Črnomelj €2.00 / person / day · Pets on prior notice, surcharge €20 per stay",
+    formH:"Inquiry", formNote:"Fill in the form — your email program opens with a prepared message.",
+    fNameL:"Full name", fNamePh:"Your name", fMailL:"Email", fMailPh:"name@example.com", fHouseL:"House", fDatesL:"Dates", fPeopleL:"Guests", fMsgL:"Message",
+    fMsgPh:"Hello, we would like to book...",
+    o70a:"Griblje 70 — apartment for 7", o70s:"Griblje 70 — studio for 5", o30a:"Griblje 30 b — apartment A", o30b:"Griblje 30 b — apartment B", oAny:"Any / please advise",
+    p1:"1–4 guests", p2:"5–6 guests", p3:"7 guests", p4:"8+ guests (both houses)",
+    formSend:"Send inquiry ",
+    rInOutT:"Check-in / check-out", rInOutS:"Check-in 15:00–22:00, check-out 9:30–10:00. Please state your arrival time.",
+    rKidsT:"Children", rKidsS:"All ages welcome. Price depends on the number of guests.",
+    rPetsT:"Pets", rPetsS:"On prior notice, surcharge €20 per stay.",
+    rQuietT:"Quiet hours", rQuietS:"Between 22:00 and 6:00. No smoking indoors.",
+    mq0:"Kolpa — the warmest river in Slovenia", mq1:"10 minutes' walk to the bathing spot", mq2:"Jacuzzi in every garden",
+    mq3:"Enclosed garden — privacy", mq4:"Pets welcome", mq5:"Booking without commission",
+    names:["Home","Griblje 70","Griblje 30 b","Kolpa River","Gallery","Inquiry"],
+    calPrev:"Previous month", calNext:"Next month",
+    months:["January","February","March","April","May","June","July","August","September","October","November","December"],
+    dows:["Mo","Tu","We","Th","Fr","Sa","Su"],
+    calNote:"Click arrival day then departure day — or just arrival for a general inquiry. Minimum stay: 2 nights.",
+    calSel:"Arrival: {in} · Departure: {out} · {n} nights",
+    calSelOne:"Arrival: {in} · departure by agreement",
+    calNone:"Pick a date on the calendar",
+    revScore:" · {s} / 10",
+    dotsAria:"Scenes", aPrev:"Previous scene", aNext:"Next scene", aPrevImg:"Previous image", aNextImg:"Next image",
+    aClose:"Close", aLb:"Full image view", aMenu:"Menu", aBrand:"River Kolpa Apartments — home",
+    lbCap:"Full image view",
+    mPrev:"Previous review", mNext:"Next review", mPlay:"Pause / play"
+  }
+};
+
+let LANG = 'sl';
+try { LANG = localStorage.getItem('rka-lang') || ((navigator.language || '').toLowerCase().startsWith('sl') ? 'sl' : 'en'); }
+catch(e){}
+if (LANG !== 'sl' && LANG !== 'en') LANG = 'sl';
+
+function t(k){ const d = T[LANG] || T.sl; return (k in d) ? d[k] : (T.sl[k] !== undefined ? T.sl[k] : k); }
 
 /* ============ PRIZORI ============ */
 const scenes = [...document.querySelectorAll('.scene')];
-const names = ['Domov','Griblje 70','Griblje 30 b','Reka Kolpa','Galerija','Povpraševanje'];
+const names = () => t('names');
 const menuLinks = [...document.querySelectorAll('#menu a')];
 const dotsBox = document.getElementById('dots');
+const heroVideo = document.getElementById('heroVideo');
 let cur = 0;
 
-names.forEach((n, i) => {
-  const b = document.createElement('button');
-  b.setAttribute('aria-label', n);
-  b.addEventListener('click', () => go(i));
-  dotsBox.appendChild(b);
-});
-const dots = [...dotsBox.children];
+function buildDots(){
+  dotsBox.innerHTML = '';
+  names().forEach((n, i) => {
+    const b = document.createElement('button');
+    b.setAttribute('role', 'tab');
+    b.setAttribute('aria-label', n);
+    b.setAttribute('aria-selected', i === cur ? 'true' : 'false');
+    b.addEventListener('click', () => go(i));
+    dotsBox.appendChild(b);
+  });
+}
 
 function go(i){
   i = (i + scenes.length) % scenes.length;
   if (i === cur) { return; }
+  const prev = cur;
   scenes[cur].classList.remove('active');
   cur = i;
   const s = scenes[cur];
-  s.classList.remove('active');
   void s.offsetWidth;
   s.classList.add('active');
   document.getElementById('dNum').textContent = String(cur + 1).padStart(2, '0');
-  document.getElementById('dName').textContent = names[cur];
-  dots.forEach((d, k) => d.classList.toggle('on', k === cur));
+  document.getElementById('dName').textContent = names()[cur];
+  dotsBox.querySelectorAll('button').forEach((d, k) => {
+    d.classList.toggle('on', k === cur);
+    d.setAttribute('aria-selected', k === cur ? 'true' : 'false');
+  });
   menuLinks.forEach(a => a.classList.toggle('active', +a.dataset.go === cur && !a.classList.contains('cta')));
   document.body.classList.remove('nav-open');
   document.getElementById('burger').setAttribute('aria-expanded', 'false');
-  history.replaceState(null, '', '#' + scenes[cur].id.slice(2));
+  try { history.pushState(null, '', '#' + scenes[cur].id.slice(2)); } catch(err){}
+  if (heroVideo){
+    if (cur === 0 && heroVideo.paused) heroVideo.play().catch(() => {});
+    if (prev === 0 && cur !== 0 && !heroVideo.paused) heroVideo.pause();
+  }
 }
+
 document.querySelectorAll('[data-go]').forEach(el => {
   el.addEventListener('click', e => { e.preventDefault(); go(+el.dataset.go); });
   el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(+el.dataset.go); } });
@@ -674,13 +894,17 @@ document.getElementById('nextS').addEventListener('click', () => go(cur + 1));
 addEventListener('keydown', e => {
   if (document.getElementById('lb').classList.contains('open')) return;
   if (e.target.matches('input,textarea,select')) return;
+  if (e.target.closest('.viewer button, .vstrip button, .lb, .dock button, .dock a, .mctl button, .gal-filters button, .cal-grid button')) return;
   if (e.key === 'ArrowRight' || e.key === 'PageDown') go(cur + 1);
   if (e.key === 'ArrowLeft'  || e.key === 'PageUp')   go(cur - 1);
 });
 let wheelLock = false;
 addEventListener('wheel', e => {
-  if (wheelLock || e.target.closest('.vstrip')) return;
-  wheelLock = true; setTimeout(() => wheelLock = false, 900);
+  if (wheelLock) return;
+  if (e.target.closest('.vstrip')) return;
+  if (document.getElementById('lb').classList.contains('open')) return;
+  if (Math.abs(e.deltaY) < 3) return;
+  wheelLock = true; setTimeout(() => wheelLock = false, 800);
   go(cur + (e.deltaY > 0 ? 1 : -1));
 }, { passive: true });
 
@@ -688,24 +912,30 @@ document.getElementById('burger').addEventListener('click', () => {
   const open = document.body.classList.toggle('nav-open');
   document.getElementById('burger').setAttribute('aria-expanded', open);
 });
-const h = location.hash.replace('#', '');
-const startIdx = scenes.findIndex(s => s.id.slice(2) === h);
-if (startIdx > 0) { scenes[0].classList.remove('active'); go(startIdx); }
-else { dots[0].classList.add('on'); menuLinks[0].classList.add('active'); }
+document.getElementById('stage').addEventListener('focus', () => {
+  document.querySelector('.skip').blur();
+});
 
 /* ============ PREGLEDNIKI ============ */
 const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'),
       lbCap = document.getElementById('lbCap'), lbCount = document.getElementById('lbCount');
-let lbList = [], lbIdx = 0;
+let lbList = [], lbIdx = 0, lbOpener = null;
+
 function openLb(list, i){
+  if (!list.length) return;
   lbList = list; lbIdx = (i + list.length) % list.length;
   const it = list[lbIdx];
-  lbImg.src = 'img/' + it[0] + '.webp'; lbImg.alt = it[1];
-  lbCap.innerHTML = '<i>' + String(lbIdx + 1).padStart(2, '0') + '</i> — ' + it[1];
+  lbImg.src = 'img/' + it.n + '.webp'; lbImg.alt = it.cap;
+  lbCap.innerHTML = '<i>' + String(lbIdx + 1).padStart(2, '0') + '</i> — ' + it.cap;
   lbCount.textContent = String(lbIdx + 1).padStart(2, '0') + ' / ' + list.length;
+  lbOpener = document.activeElement;
   lb.classList.add('open');
+  document.getElementById('lbClose').focus();
 }
-function closeLb(){ lb.classList.remove('open'); }
+function closeLb(){
+  lb.classList.remove('open');
+  if (lbOpener && lbOpener.focus) lbOpener.focus();
+}
 document.getElementById('lbClose').addEventListener('click', closeLb);
 document.getElementById('lbPrev').addEventListener('click', () => openLb(lbList, lbIdx - 1));
 document.getElementById('lbNext').addEventListener('click', () => openLb(lbList, lbIdx + 1));
@@ -715,6 +945,15 @@ addEventListener('keydown', e => {
   if (e.key === 'Escape') closeLb();
   if (e.key === 'ArrowLeft') openLb(lbList, lbIdx - 1);
   if (e.key === 'ArrowRight') openLb(lbList, lbIdx + 1);
+  if (e.key === 'Tab'){
+    const f = [document.getElementById('lbClose'), document.getElementById('lbPrev'), document.getElementById('lbNext')];
+    const idx = f.indexOf(document.activeElement);
+    if (idx > -1){
+      e.preventDefault();
+      const next = e.shiftKey ? (idx - 1 + f.length) % f.length : (idx + 1) % f.length;
+      f[next].focus();
+    }
+  }
 });
 let tx = 0;
 lb.addEventListener('touchstart', e => tx = e.touches[0].clientX, { passive: true });
@@ -723,83 +962,315 @@ lb.addEventListener('touchend', e => {
   if (Math.abs(dx) > 50) openLb(lbList, lbIdx + (dx < 0 ? 1 : -1));
 }, { passive: true });
 
-function buildViewer(rootSel, stripSel, list, prefix){
+function buildViewer(rootSel, stripSel, list){
   const root = document.querySelector('[data-viewer="' + rootSel + '"]');
   const main = root.querySelector('.vmain');
   const capT = root.querySelector('.cap-t'), cnt = root.querySelector('.cnt');
   const strip = document.querySelector('[data-strip="' + stripSel + '"]');
-  let i = 0; const els = [];
-  list.forEach(([n, cap]) => {
-    const im = document.createElement('img');
-    im.src = 'img/' + n + '.webp'; im.alt = cap; im.loading = 'lazy'; im.decoding = 'async';
-    main.insertBefore(im, main.firstChild);
-    els.push(im);
-    const th = document.createElement('button');
-    th.innerHTML = '<img src="img/' + n + '.webp" alt="" loading="lazy">';
-    th.setAttribute('aria-label', cap);
-    th.addEventListener('click', () => show(i = list.findIndex(x => x[0] === n)));
-    strip.appendChild(th);
-  });
-  const thumbs = [...strip.children];
+  const im = document.createElement('img');
+  im.alt = ''; im.decoding = 'async';
+  main.insertBefore(im, main.firstChild);
+  let i = 0, thumbs = [];
+
+  function makeThumbs(){
+    strip.innerHTML = '';
+    thumbs = [];
+    list.forEach((it, k) => {
+      const th = document.createElement('button');
+      th.innerHTML = '<img src="img/' + it.n + '.webp" alt="" loading="lazy" decoding="async">';
+      th.setAttribute('aria-label', it.cap);
+      th.addEventListener('click', () => show(k));
+      strip.appendChild(th);
+      thumbs.push(th);
+    });
+  }
   function show(k){
+    if (!list.length) return;
     i = (k + list.length) % list.length;
-    els.forEach((im, x) => im.classList.toggle('on', x === i));
+    const it = list[i];
+    im.src = 'img/' + it.n + '.webp'; im.alt = it.cap;
     thumbs.forEach((t, x) => t.classList.toggle('on', x === i));
     const on = thumbs[i]; if (on) on.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
-    capT.textContent = list[i][1];
+    capT.textContent = it.cap;
     cnt.textContent = String(i + 1).padStart(2, '0') + ' / ' + list.length;
     root.querySelector('.cap i').textContent = String(i + 1).padStart(2, '0');
   }
   root.querySelector('.vb.prev').addEventListener('click', () => show(i - 1));
   root.querySelector('.vb.next').addEventListener('click', () => show(i + 1));
-  main.addEventListener('click', () => openLb(list, i));
+  main.addEventListener('click', () => { if (list.length) openLb(list, i); });
+  makeThumbs();
   show(0);
-  return { show };
+  return {
+    show,
+    setList(l){ list = l; i = 0; makeThumbs(); show(0); },
+    rebuild(){ makeThumbs(); show(i); }
+  };
 }
 
-const V70 = [
-  ["noter-01", F["noter-01"][0]], ["soba-main", F["soba-main"][0]], ["soba-otroci", F["soba-otroci"][0]],
-  ["hodnik-kisa", F["hodnik-kisa"][0]], ["noter-02", F["noter-02"][0]], ["noter-03", F["noter-03"][0]],
-  ["noter-10", F["noter-10"][0]], ["pergola-vrt", F["pergola-vrt"][0]], ["letna-kuhinja", F["letna-kuhinja"][0]],
-  ["jacuzzi-terasa", F["jacuzzi-terasa"][0]], ["terasa-studio", F["terasa-studio"][0]], ["gugal", F["gugal"][0]]
-];
-const V30B = [
-  ["zunanjost-30b", F["zunanjost-30b"][0]], ["travnik-30b", F["travnik-30b"][0]],
-  ["kuhinja-30b", F["kuhinja-30b"][0]], ["soba-30b-a", F["soba-30b-a"][0]],
-  ["soba-30b-b", F["soba-30b-b"][0]], ["soba-30b-c", F["soba-30b-c"][0]],
-  ["kopalnica-30b", F["kopalnica-30b"][0]], ["hodnik-30b", F["hodnik-30b"][0]]
-];
-const VREKA = Object.keys(F).filter(k => F[k][1] === 'reka').map(k => [k, F[k][0]]);
-const VGAL = Object.keys(F).map(k => [k, F[k][0]]);
+function itemsFrom(keys){ return keys.map(k => ({ n: k, cap: F[k][LANG === 'sl' ? 0 : 1] })); }
 
-buildViewer('v70', 'v70', V70);
-buildViewer('v30b', 'v30b', V30B);
-buildViewer('vreka', 'vreka', VREKA);
-buildViewer('vgal', 'vgal', VGAL);
+const V70keys = ["noter-01","soba-main","soba-otroci","hodnik-kisa","noter-02","noter-03","noter-10","pergola-vrt","letna-kuhinja","jacuzzi-terasa","terasa-studio","gugal"];
+const V30Bkeys = ["zunanjost-30b","travnik-30b","kuhinja-30b","soba-30b-a","soba-30b-b","soba-30b-c","kopalnica-30b","hodnik-30b"];
+const VREKAkeys = Object.keys(F).filter(k => F[k][2] === 'reka');
+const VGALkeys = Object.keys(F);
+
+const view70 = buildViewer('v70', 'v70', itemsFrom(V70keys));
+const view30b = buildViewer('v30b', 'v30b', itemsFrom(V30Bkeys));
+const viewReka = buildViewer('vreka', 'vreka', itemsFrom(VREKAkeys));
+const viewGal = buildViewer('vgal', 'vgal', itemsFrom(VGALkeys));
+
+/* ============ GALERIJA: filtri + iskanje ============ */
+const galFilters = document.getElementById('galFilters');
+const galEmptyEl = document.getElementById('galEmpty');
+const CATS = ['all','vrt','noter','izkus','30b','reka'];
+let galCat = 'all', galQ = '';
+
+function buildFilterChips(){
+  galFilters.innerHTML = '';
+  CATS.forEach(c => {
+    const b = document.createElement('button');
+    b.dataset.cat = c;
+    b.textContent = t(c === 'all' ? 'galFall' : 'galF' + c);
+    if (c === galCat) b.classList.add('on');
+    b.addEventListener('click', () => {
+      galCat = c;
+      galFilters.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+      applyGal();
+    });
+    galFilters.appendChild(b);
+  });
+}
+function applyGal(){
+  const q = galQ.toLowerCase();
+  let keys = VGALkeys.filter(k => {
+    if (galCat !== 'all' && F[k][2] !== galCat) return false;
+    if (q){
+      const cap = F[k][LANG === 'sl' ? 0 : 1].toLowerCase();
+      if (!cap.includes(q)) return false;
+    }
+    return true;
+  });
+  if (!keys.length){
+    viewGal.setList([]);
+    galEmptyEl.hidden = false;
+  } else {
+    galEmptyEl.hidden = true;
+    viewGal.setList(itemsFrom(keys));
+  }
+}
+document.getElementById('galQ').addEventListener('input', e => {
+  galQ = e.target.value.trim();
+  applyGal();
+});
 
 /* ============ MNENJA ============ */
 const REVIJI = [
-  ["Izjemno lepo opremljena in čista počitniška hišica, ki nudi popolno zasebnost s popolnoma ograjenim vrtom.", "Avan", "Slovenija"],
-  ["Zelo prijazna in topla gostiteljica, lepo stanovanje in prostorna terasa z veliko zasebnosti, zelo dobro opremljena letna kuhinja.", "Matija", "Slovenija"],
-  ["Krasen apartma, Majda je super gostiteljica, okolica je prekrasna, do najbližjega kopališča se sprehodiš po prelepi, mirni poti med polji.", "Živa", "Slovenija"]
+  { sl:["Izjemno lepo opremljena in čista počitniška hišica, ki nudi popolno zasebnost s popolnoma ograjenim vrtom.","Avan","Slovenija"],
+    en:["Exceptionally nicely furnished and clean holiday cottage offering complete privacy with a fully enclosed garden.","Avan","Slovenia"], s:10 },
+  { sl:["Zelo prijazna in topla gostiteljica, lepo stanovanje in prostorna terasa z veliko zasebnosti, zelo dobro opremljena letna kuhinja.","Matija","Slovenija"],
+    en:["Very friendly and warm host, a nice apartment and a spacious terrace with lots of privacy, a very well equipped summer kitchen.","Matija","Slovenia"], s:10 },
+  { sl:["Krasen apartma, Majda je super gostiteljica, okolica je prekrasna, do najbližjega kopališča se sprehodiš po prelepi, mirni poti med polji.","Živa","Slovenija"],
+    en:["Lovely apartment, Majda is a great host, the surroundings are beautiful, and the nearest swimming spot is a lovely quiet walk between fields.","Živa","Slovenia"], s:10 }
 ];
-let revI = 0;
+let revI = 0, revTimer = null, revPlaying = true;
 const mEl = document.getElementById('mnenje');
-function rotMnenje(){
-  const r = REVIJI[revI % REVIJI.length]; revI++;
-  mEl.querySelector('q').textContent = r[0];
-  mEl.querySelector('cite').textContent = r[1] + ' · ' + r[2] + ' · 10 / 10';
-}
-rotMnenje();
-setInterval(rotMnenje, 7000);
+const revQ = mEl.querySelector('q'), revCite = mEl.querySelector('cite');
+const mPrev = document.getElementById('mPrev'), mNext = document.getElementById('mNext'), mPlay = document.getElementById('mPlay');
+const mAdd = document.getElementById('mAdd'), mRev = document.getElementById('mRev');
+const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ============ OBRAZEC ============ */
+function curRev(){ return REVIJI[revI % REVIJI.length]; }
+function renderRev(){
+  const r = curRev();
+  const entry = r[LANG] || r.sl;
+  revQ.textContent = entry[0];
+  revCite.textContent = entry[1] + ' · ' + entry[2] + t('revScore').replace('{s}', r.s);
+  updateRevCount();
+}
+function updateRevCount(){
+  const n = String(REVIJI.length);
+  document.getElementById('revCountHero').textContent = n;
+  document.getElementById('revCountH70').textContent = n;
+}
+function revPlay(){ if (revTimer || reducedMotion) return; revTimer = setInterval(() => { revI++; renderRev(); }, 7000); revPlaying = true; mPlay.textContent = '❚❚'; }
+function revPause(){ clearInterval(revTimer); revTimer = null; revPlaying = false; mPlay.textContent = '▶'; }
+mPrev.addEventListener('click', () => { revPause(); revI--; renderRev(); });
+mNext.addEventListener('click', () => { revPause(); revI++; renderRev(); });
+mPlay.addEventListener('click', () => revPlaying ? revPause() : revPlay());
+mAdd.addEventListener('click', () => {
+  const open = mRev.classList.toggle('open');
+  mAdd.classList.toggle('on', open);
+  mAdd.setAttribute('aria-expanded', open ? 'true' : 'false');
+  mAdd.textContent = t(open ? 'revAddOn' : 'revAdd');
+});
+document.getElementById('rvSend').addEventListener('click', () => {
+  const name = document.getElementById('rv-name').value.trim();
+  const score = document.getElementById('rv-score').value;
+  const txt = document.getElementById('rv-text').value.trim();
+  const body = 'Pozdravljeni,%0D%0A%0D%0Anovo mnenje gostov za River Kolpa Apartments:%0D%0AIme: ' + encodeURIComponent(name || '—') +
+    '%0D%0AOcena: ' + encodeURIComponent(score) +
+    '%0D%0AMnenje: ' + encodeURIComponent(txt || '—');
+  location.href = 'mailto:majda.pezdirc@gmail.com?subject=' + encodeURIComponent('River Kolpa Apartments — novo mnenje gostov') + '&body=' + body;
+});
+
+/* ============ KOLEDAR ============ */
+const calBox = document.getElementById('cal');
+const calHidden = document.getElementById('f-dates');
+const calNote = document.createElement('p');
+calNote.className = 'cal-note';
+calBox.parentNode.insertBefore(calNote, calBox.nextSibling);
+let calView = new Date();
+calView.setDate(1);
+let selIn = null, selOut = null;
+
+function fmtDate(d, short){
+  if (LANG === 'sl'){
+    const s = String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + d.getFullYear();
+    return short ? s : s;
+  }
+  const s = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
+  return short ? s : s;
+}
+function calSummary(){
+  if (selIn){
+    if (selOut) calNote.innerHTML = t('calSel').replace('{in}', fmtDate(selIn)).replace('{out}', fmtDate(selOut)).replace('{n}', Math.round((selOut - selIn) / 86400000));
+    else calNote.innerHTML = t('calSelOne').replace('{in}', fmtDate(selIn));
+  } else calNote.textContent = t('calNone');
+  calHidden.value = selIn ? (selOut ? fmtDate(selIn) + ' – ' + fmtDate(selOut) : fmtDate(selIn)) : '';
+}
+function renderCal(){
+  calBox.innerHTML = '';
+  const head = document.createElement('div');
+  head.className = 'cal-head';
+  const prevB = document.createElement('button');
+  prevB.innerHTML = '‹'; prevB.setAttribute('aria-label', t('calPrev'));
+  prevB.addEventListener('click', () => { calView.setMonth(calView.getMonth() - 1); renderCal(); });
+  const nextB = document.createElement('button');
+  nextB.innerHTML = '›'; nextB.setAttribute('aria-label', t('calNext'));
+  nextB.addEventListener('click', () => { calView.setMonth(calView.getMonth() + 1); renderCal(); });
+  const label = document.createElement('b');
+  label.textContent = t('months')[calView.getMonth()] + ' ' + calView.getFullYear();
+  head.appendChild(prevB); head.appendChild(label); head.appendChild(nextB);
+  calBox.appendChild(head);
+  const grid = document.createElement('div');
+  grid.className = 'cal-grid';
+  t('dows').forEach(d => {
+    const s = document.createElement('span');
+    s.className = 'dow'; s.textContent = d;
+    grid.appendChild(s);
+  });
+  const today = new Date(); today.setHours(0,0,0,0);
+  const first = new Date(calView); first.setDate(1);
+  for (let i = 0; i < ((first.getDay() + 6) % 7); i++){
+    const s = document.createElement('span'); grid.appendChild(s);
+  }
+  const dim = new Date(calView.getFullYear(), calView.getMonth() + 1, 0).getDate();
+  for (let d = 1; d <= dim; d++){
+    const date = new Date(calView.getFullYear(), calView.getMonth(), d);
+    const b = document.createElement('button');
+    b.textContent = d;
+    b.setAttribute('aria-label', fmtDate(date));
+    if (date < today) b.disabled = true;
+    if (selIn && selOut && date >= selIn && date <= selOut) b.classList.add('in');
+    if ((selIn && +date === +selIn) || (selOut && +date === +selOut)) b.classList.add('sel');
+    b.addEventListener('click', () => {
+      if (!selIn || (selOut && date < selIn) || +date === +selIn){
+        selIn = date; selOut = null;
+      } else if (+date < +selIn){
+        selIn = date; selOut = null;
+      } else {
+        selOut = date;
+      }
+      renderCal();
+    });
+    grid.appendChild(b);
+  }
+  calBox.appendChild(grid);
+  calSummary();
+}
+
+/* ============ POVPRASHEVANJE ============ */
 document.getElementById('bookForm').addEventListener('submit', e => {
   e.preventDefault();
   const f = e.target;
   const body = `Pozdravljeni,%0D%0A%0D%0Apovpraševanje za River Kolpa Apartments:%0D%0AHiša: ${encodeURIComponent(f.hisa.value)}%0D%0AIme: ${encodeURIComponent(f.ime.value)}%0D%0AE-pošta: ${encodeURIComponent(f.posta.value)}%0D%0ATermin: ${encodeURIComponent(f.termin.value || '—')}%0D%0AOsebe: ${encodeURIComponent(f.osebe.value)}%0D%0A%0D%0A${encodeURIComponent(f.sporocilo.value || '')}`;
   location.href = `mailto:majda.pezdirc@gmail.com?subject=${encodeURIComponent('River Kolpa Apartments — povpraševanje')}&body=${body}`;
 });
+
+/* ============ JEZIK ============ */
+function applyI18n(){
+  document.documentElement.lang = LANG === 'sl' ? 'sl' : 'en';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.dataset.i18n;
+    if (el.dataset.i18nHtml) { el.innerHTML = t(k); return; }
+    if (el.childElementCount) {
+      const first = el.firstChild;
+      if (first && first.nodeType === 3) first.nodeValue = t(k);
+    } else {
+      el.textContent = t(k);
+    }
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    el.setAttribute('placeholder', t(el.dataset.i18nPh));
+  });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+    el.setAttribute('aria-label', t(el.dataset.i18nAria));
+  });
+  const lbAria = document.getElementById('lb');
+  lbAria.setAttribute('aria-label', t('aLb'));
+  document.getElementById('burger').setAttribute('aria-label', t('aMenu'));
+  document.querySelector('.brand').setAttribute('aria-label', t('aBrand'));
+  const prevS = document.getElementById('prevS'), nextS = document.getElementById('nextS');
+  prevS.setAttribute('aria-label', t('aPrev')); nextS.setAttribute('aria-label', t('aNext'));
+  document.querySelectorAll('.vb.prev').forEach(b => b.setAttribute('aria-label', t('aPrevImg')));
+  document.querySelectorAll('.vb.next').forEach(b => b.setAttribute('aria-label', t('aNextImg')));
+  document.getElementById('lbPrev').setAttribute('aria-label', t('aPrevImg'));
+  document.getElementById('lbNext').setAttribute('aria-label', t('aNextImg'));
+  document.getElementById('lbClose').setAttribute('aria-label', t('aClose'));
+  mPrev.setAttribute('aria-label', t('mPrev')); mNext.setAttribute('aria-label', t('mNext')); mPlay.setAttribute('aria-label', t('mPlay'));
+  document.getElementById('dName').textContent = names()[cur];
+  buildDots();
+  buildFilterChips();
+  view70.rebuild(); view30b.rebuild(); viewReka.rebuild();
+  applyGal();
+  renderRev();
+  renderCal();
+  if (mRev.classList.contains('open')) mAdd.textContent = t('revAddOn');
+}
+document.getElementById('langSl').addEventListener('click', () => setLang('sl'));
+document.getElementById('langEn').addEventListener('click', () => setLang('en'));
+function setLang(l){
+  if (l === LANG) return;
+  LANG = l;
+  try { localStorage.setItem('rka-lang', l); } catch(e){}
+  document.getElementById('langSl').classList.toggle('on', l === 'sl');
+  document.getElementById('langEn').classList.toggle('on', l === 'en');
+  document.getElementById('langSl').setAttribute('aria-pressed', l === 'sl' ? 'true' : 'false');
+  document.getElementById('langEn').setAttribute('aria-pressed', l === 'en' ? 'true' : 'false');
+  applyI18n();
+}
+
+/* ============ ZAGON ============ */
+const h = location.hash.replace('#', '');
+const startIdx = scenes.findIndex(s => s.id.slice(2) === h);
+buildDots();
+if (startIdx > 0) {
+  scenes[0].classList.remove('active');
+  cur = 0;
+  go(startIdx);
+} else {
+  dotsBox.querySelectorAll('button')[0].classList.add('on');
+  menuLinks[0].classList.add('active');
+}
+addEventListener('hashchange', () => {
+  const hh = location.hash.replace('#', '');
+  const idx = scenes.findIndex(s => s.id.slice(2) === hh);
+  if (idx > -1 && idx !== cur) go(idx);
+});
+applyI18n();
+renderRev();
+revPlay();
+renderCal();
 </script>
 </body>
 </html>

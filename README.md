@@ -99,19 +99,24 @@ This is a comprehensive, single-page application designed to showcase River Kolp
 - Contact and booking system
 - Social media integration
 - Map location access
+- Gallery filtering by category + caption search
+- Guest review widget with ratings, controls and a review email form
+- Interactive availability calendar (arrival/departure) feeding the booking email
+- Slovenian / English language switcher (remembered; detected from browser)
 
-🔄 **Planned Enhancements**
-- Advanced filtering and search
-- User review system
-- Booking calendar integration
-- Multi-language support
+🔄 **Planned Enhancements (future)**
+- Live user review publishing (needs a backend)
+- Real-time availability sync / booking calendar integration with a booking platform
+- Additional languages (DE, IT)
 
 ## Usage
 
 ### Basic Navigation
-- Use navigation links or hash links (`#s-h70`, `#s-h30b`, etc.)
-- Scroll-based section switching with hash tracking
+- Use navigation links or hash links (`#domov`, `#h70`, `#h30b`, `#reka`, `#galerija`, `#termini`)
+- Scene switching with hash tracking; browser back/forward buttons work
+- Mouse wheel and arrow keys switch scenes (dead-zone prevents accidental flips)
 - Mobile navigation accessible via hamburger menu
+- Language switcher SL/EN in the header (fixed position on mobile)
 
 ### Property Viewing
 - Click on property cards to navigate to detailed views
@@ -120,8 +125,14 @@ This is a comprehensive, single-page application designed to showcase River Kolp
 
 ### Contact & Booking
 - Fill out contact forms for property inquiries
-- Book directly through email integration
+- Use the calendar in the form to pick arrival/departure dates (min. 2 nights)
+- Book directly through email integration (mailto with a prepared message)
 - Access location maps for directions
+
+### Gallery
+- Filter by category chips (Vse / Vrt / Notranje / Izkušnja / Griblje 30 b / Reka)
+- Search field filters captions; combined with the active category
+- Click a thumbnail or the large image to open the full-size lightbox
 
 ## Files Included
 
