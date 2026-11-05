@@ -94,9 +94,11 @@ body.nav-open .burger span:nth-child(1){transform:translateY(6px) rotate(45deg)}
 body.nav-open .burger span:nth-child(2){opacity:0}
 body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 @media(max-width:1050px){
+  header{backdrop-filter:none;-webkit-backdrop-filter:none;background:linear-gradient(180deg,rgba(8,14,10,.94),rgba(8,14,10,.62))}
+  .brand{position:relative;z-index:112}
   .burger{display:block}
   .telbtn{display:inline-block}
-  .lang{display:flex;position:fixed;top:calc(var(--pad-top) - 60px);right:1rem;z-index:111;background:rgba(7,12,9,.85);backdrop-filter:blur(8px)}
+  .lang{display:flex;position:fixed;top:calc(var(--pad-top) - 60px);right:calc(1rem + 48px);z-index:111;background:rgba(7,12,9,.85);backdrop-filter:blur(8px)}
   .menu{position:fixed;inset:0;background:rgba(7,12,9,.97);flex-direction:column;justify-content:center;gap:1.4rem;opacity:0;pointer-events:none;transition:opacity .4s ease}
   body.nav-open .menu{opacity:1;pointer-events:auto}
   .menu a{font-size:.95rem;letter-spacing:.3em}
@@ -191,6 +193,10 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
 #s-galerija .viewer{flex:1;min-height:0;display:flex;flex-direction:column}
 #s-galerija .rv,#s-galerija .wrap,#s-reka .rv{min-width:0}
 #s-galerija .viewer .vmain{flex:1;height:auto;min-height:0}
+@media(min-width:641px){
+  #s-galerija .viewer .vmain::before{content:"";position:absolute;inset:-30px;background-image:var(--bgimg);background-size:cover;background-position:center;filter:blur(42px) brightness(.34) saturate(.9);transform:scale(1.1);z-index:0}
+  #s-galerija .viewer .vmain img{object-fit:contain;z-index:1;box-shadow:0 0 70px rgba(0,0,0,.6)}
+}
 .gal-top{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:.9vh;flex:none}
 .gal-tools{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-bottom:.8rem;flex:none}
 .gal-search{flex:1;min-width:160px;max-width:320px;position:relative}
@@ -201,7 +207,9 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
 .gal-filters button{font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);border:1px solid rgba(224,178,135,.22);border-radius:999px;padding:.34rem .85rem;background:none;cursor:pointer;transition:border-color .3s,color .3s,background .3s}
 .gal-filters button:hover{border-color:var(--gold);color:var(--ink)}
 .gal-filters button.on{background:var(--gold);color:#101a12;border-color:var(--gold);font-weight:500}
-.gal-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--ink-dim);font-size:.85rem;letter-spacing:.12em;background:var(--bg-3)}
+.gal-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--ink-dim);font-size:.85rem;letter-spacing:.12em;background:var(--bg-3);z-index:2}
+.gal-empty[hidden]{display:none}
+.viewer.is-empty .cap,.viewer.is-empty .cnt,.viewer.is-empty .vb{display:none}
 
 /* ---------- TERMINI ---------- */
 .term-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.4rem,3vw,3rem);align-items:start;min-width:0}
@@ -296,9 +304,29 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
 }
 @media(max-width:640px){
   :root{--pad-top:72px;--dock:56px}
-  .brand b{font-size:.8rem;white-space:nowrap;letter-spacing:.08em}
+  .nav{gap:.55rem}
+  .brand{gap:.5rem;min-width:0}
+  .brand svg{width:26px;height:26px}
+  .brand b{font-size:.68rem;white-space:nowrap;letter-spacing:.05em}
   .brand i{display:none}
-  .telbtn{font-size:.62rem;padding:.4rem .65rem;white-space:nowrap}
+  .telbtn{display:none}
+  .lang{position:static;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:1px;flex:none}
+  .lang button{font-size:.58rem;padding:.3rem .45rem}
+  .burger{width:34px;height:36px;flex:none}
+  .burger span{left:6px;right:6px}
+  .hero-stats{display:grid;grid-template-columns:1fr 1fr;width:100%;max-width:420px}
+  .hstat{padding:.6vh 2vw;border-bottom:1px solid var(--line)}
+  .hstat:nth-child(2n){border-right:0}
+  .hstat:nth-last-child(-n+2){border-bottom:0}
+  .viewer .cap{left:.7rem;bottom:.7rem;right:auto;max-width:calc(100% - 5.6rem);font-size:.58rem;letter-spacing:.14em;line-height:1.5;padding:.35rem .6rem}
+  .viewer .cnt{top:.7rem;right:.7rem;bottom:auto;font-size:.55rem;letter-spacing:.18em;padding:.3rem .5rem}
+  .dock{gap:.5rem;padding:0 .7rem}
+  .dock .where{gap:.3rem}
+  .dock .where .t{display:none}
+  .dock .dots{gap:.3rem}
+  .dock .dots button{width:16px}
+  .dock .navs{gap:.3rem}
+  .dock .navs button,.dock .navs a.fb{width:32px;height:32px}
   .hero-inner h1{font-size:clamp(1.9rem,8.6vw,2.8rem)}
   .viewer .vmain{height:clamp(150px,20svh,230px)}
   #s-reka .viewer .vmain{height:clamp(180px,30svh,280px)}
@@ -332,6 +360,9 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
   .gal-top .kicker{display:none}
   .gal-tools{gap:.5rem}
   .gal-search{max-width:none}
+  .reka-head{display:block}
+  .reka-note{display:block;margin-top:.55rem;text-align:left;font-size:.6rem;letter-spacing:.14em}
+  #s-reka .kicker{white-space:nowrap}
   .dock .mq{display:none}
   .dock .dots{flex:1;justify-content:center}
   .lb .lb-btn{width:40px;height:40px}
@@ -497,7 +528,7 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
         <div class="reka-head">
           <div>
             <div class="rv" style="display:flex;align-items:center;gap:1rem;margin-bottom:.55rem"><span class="num">03</span><span class="rule"></span><span class="kicker" data-i18n="rkKicker">Reka Kolpa</span></div>
-            <h2 class="title rv d1" style="margin-bottom:0">Deset minut hoje — <em data-i18n="rkEm">naravno kopališče</em></h2>
+            <h2 class="title rv d1" style="margin-bottom:0" data-i18n="rkTitle" data-i18n-html="1">Deset minut hoje — <em>naravno kopališče</em></h2>
           </div>
           <span class="reka-note rv d1" data-i18n="rkNote" data-i18n-html="1">Najtoplejša slovenska reka · <b>poleti preko 24 °C</b></span>
         </div>
@@ -521,7 +552,7 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
       <div class="wrap" style="height:100%;display:flex;flex-direction:column">
         <div class="gal-top">
           <div style="display:flex;align-items:center;gap:1rem;margin-bottom:.2rem"><span class="num">04</span><span class="rule"></span><span class="kicker" data-i18n="galKicker">Galerija</span></div>
-          <h2 class="title" style="margin:0">Pogled skozi <em data-i18n="galEm">objektiv</em></h2>
+          <h2 class="title" style="margin:0" data-i18n="galTitle" data-i18n-html="1">Pogled skozi <em>objektiv</em></h2>
           <span class="kicker" style="color:var(--ink-dim)" data-i18n="galHint" data-i18n-html="1">Klikni sličico ali veliko sliko <b style="color:var(--gold)">za polni ogled</b></span>
         </div>
         <div class="gal-tools rv d1">
@@ -548,7 +579,7 @@ body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg
       <div class="wrap term-grid">
         <div>
           <div class="rv" style="display:flex;align-items:center;gap:1rem;margin-bottom:.55rem"><span class="num">05</span><span class="rule"></span><span class="kicker" data-i18n="tmKicker">Povpraševanje</span></div>
-          <h2 class="title rv d1">Rezervirajte svoj <em data-i18n="tmEm">termin</em></h2>
+          <h2 class="title rv d1" data-i18n="tmTitle" data-i18n-html="1">Rezervirajte svoj <em>termin</em></h2>
           <p class="lead rv d1" data-i18n="tmLead">Neposredna rezervacija po telefonu ali e-pošti — brez provizije. Prek Booking.com plačilo ureja Booking.com.</p>
           <div class="c-cards">
             <a class="c-card rv d2" href="tel:+38640858732">
@@ -727,12 +758,15 @@ const T = {
     chKit2:"Kuhinja s pečico in štedilnikom", chBath:"Kopalnica s tušem", chJacT:"Jacuzzi na terasi", chGarden2:"Ograjen travnik",
     btnAsk30:"Vprašaj za Griblje 30 b ", btnOther70:"Druga hiša: Griblje 70",
     rkKicker:"Reka Kolpa", rkEm:"naravno kopališče",
+    rkTitle:"Deset minut hoje — <em>naravno kopališče</em>",
     rkNote:"Najtoplejša slovenska reka · <b>poleti preko 24 °C</b>",
     galKicker:"Galerija", galEm:"objektiv",
+    galTitle:"Pogled skozi <em>objektiv</em>",
     galHint:"Klikni sličico ali veliko sliko <b style=\"color:var(--gold)\">za polni ogled</b>",
     galSearchPh:"Išči po napisu …", galEmpty:"Ni zadetkov", galFAria:"Filtri",
     galFall:"Vse", galFvrt:"Vrt", galFnoter:"Notranje", galFizkus:"Izkušnja", galF30b:"Griblje 30 b", galFreka:"Reka",
     tmKicker:"Povpraševanje", tmEm:"termin",
+    tmTitle:"Rezervirajte svoj <em>termin</em>",
     tmLead:"Neposredna rezervacija po telefonu ali e-pošti — brez provizije. Prek Booking.com plačilo ureja Booking.com.",
     cardCall:"Pokliči zdaj", cardMail:"Piši nam", cardBkg:"Ocena 10/10 · 8 mnenj", cardFb:"Sledi novicam & slikam",
     revAdd:"Dodaj mnenje", revAddOn:"Zapri",
@@ -791,12 +825,15 @@ const T = {
     chKit2:"Kitchen with oven and stove", chBath:"Bathroom with shower", chJacT:"Terrace jacuzzi", chGarden2:"Enclosed lawn",
     btnAsk30:"Ask about Griblje 30 b ", btnOther70:"Other house: Griblje 70",
     rkKicker:"Kolpa River", rkEm:"natural swimming spot",
+    rkTitle:"A ten-minute walk — <em>natural swimming spot</em>",
     rkNote:"The warmest Slovenian river · <b>over 24 °C in summer</b>",
     galKicker:"Gallery", galEm:"the lens",
+    galTitle:"Through the <em>lens</em>",
     galHint:"Click a thumbnail or the large image <b style=\"color:var(--gold)\">for full view</b>",
     galSearchPh:"Search captions…", galEmpty:"No matches", galFAria:"Filters",
     galFall:"All", galFvrt:"Garden", galFnoter:"Interiors", galFizkus:"Experience", galF30b:"Griblje 30 b", galFreka:"River",
     tmKicker:"Inquiry", tmEm:"your stay",
+    tmTitle:"Book <em>your stay</em>",
     tmLead:"Direct booking by phone or email — no commission. Via Booking.com, payment is handled by Booking.com.",
     cardCall:"Call now", cardMail:"Email us", cardBkg:"Rating 10/10 · 8 reviews", cardFb:"Follow news & photos",
     revAdd:"Add a review", revAddOn:"Close",
@@ -989,6 +1026,7 @@ function buildViewer(rootSel, stripSel, list){
     i = (k + list.length) % list.length;
     const it = list[i];
     im.src = 'img/' + it.n + '.webp'; im.alt = it.cap;
+    main.style.setProperty('--bgimg', 'url("img/' + it.n + '.webp")');
     thumbs.forEach((t, x) => t.classList.toggle('on', x === i));
     const on = thumbs[i]; if (on) on.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
     capT.textContent = it.cap;
@@ -1002,7 +1040,7 @@ function buildViewer(rootSel, stripSel, list){
   show(0);
   return {
     show,
-    setList(l){ list = l; i = 0; makeThumbs(); show(0); },
+    setList(l){ list = l; i = 0; makeThumbs(); root.classList.toggle('is-empty', !list.length); if (!list.length){ im.removeAttribute('src'); im.alt = ''; main.style.removeProperty('--bgimg'); } else show(0); },
     rebuild(){ makeThumbs(); show(i); }
   };
 }
